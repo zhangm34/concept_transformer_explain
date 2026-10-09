@@ -1,0 +1,17 @@
+{
+  "run_dir": "training_runs/regular-b32-20261009-232419",
+  "pid": 2424,
+  "batch_size": 32,
+  "launch_command": [
+    "/Users/mengyuanz/Documents/projects/concept_transformer_explain/.venv/bin/python",
+    "-u",
+    "/Users/mengyuanz/Documents/projects/concept_transformer_explain/scripts/run_training.py",
+    "--run-dir",
+    "/Users/mengyuanz/Documents/projects/concept_transformer_explain/training_runs/regular-b32-20261009-232419",
+    "--max-epochs",
+    "50",
+    "--batch-size",
+    "32"
+  ],
+  "started_at_utc": "2026-10-09T23:24:19.527842+00:00"
+}

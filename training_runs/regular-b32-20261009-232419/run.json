@@ -1,0 +1,33 @@
+{
+  "started_at_utc": "2026-10-09T23:24:19.583255+00:00",
+  "pid": 2424,
+  "status": "training",
+  "debug": false,
+  "command": [
+    "/Users/mengyuanz/Documents/projects/concept_transformer_explain/.venv/bin/python",
+    "/Users/mengyuanz/Documents/projects/concept_transformer_explain/concept_transformer/cvit_cub.py",
+    "--data_dir",
+    "/Users/mengyuanz/Documents/projects/concept_transformer_explain/CUB-200-2011/CUB_200_2011",
+    "--batch_size",
+    "32",
+    "--num_workers",
+    "0",
+    "--max_epochs",
+    "50"
+  ],
+  "working_directory": "/Users/mengyuanz/Documents/projects/concept_transformer_explain/training_runs/regular-b32-20261009-232419",
+  "runner": "/Users/mengyuanz/Documents/projects/concept_transformer_explain/scripts/run_training.py",
+  "repository_commit": "84c9c30108a6249e017d580c4120ea54af0064f7",
+  "entrypoint_sha256": "eb657842a0df2c8b013bfcb0afe9127ec5eecfffd2b2672fd1f418ef3e8008a4",
+  "max_epochs": 50,
+  "batch_size": 32,
+  "num_workers": 0,
+  "timing_file": "/Users/mengyuanz/Documents/projects/concept_transformer_explain/training_runs/regular-b32-20261009-232419/batch_timings.jsonl",
+  "instrumentation": "Timing-only Lightning callback; original CLI, model, optimizer, loss, and trainer configuration retained.",
+  "device": "cpu",
+  "train_batches_per_epoch": 187,
+  "validation_batches_per_epoch": [
+    32
+  ],
+  "training_started_at_utc": "2026-10-09T23:27:47.592368+00:00"
+}

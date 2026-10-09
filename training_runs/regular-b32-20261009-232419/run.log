@@ -1,0 +1,22 @@
+Starting regular training with the original CLI defaults and a timing-only callback.
+
+* RUN EXPERIMENT Namespace(attention_sparsity=0.5, baseline=False, batch_size=32, ctc_model='cub_cvit', data_dir='/Users/mengyuanz/Documents/projects/concept_transformer_explain/CUB-200-2011/CUB_200_2011', data_name='CUB2011Parts', debug=False, disable_lr_scheduler=False, expl_lambda=1.0, finetune_unfreeze_epoch=0, learning_rate=5e-05, max_epochs=50, num_workers=0, seed=42, warmup=10, weight_decay=0.001)
+
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+Files already downloaded and verified
+
+  | Name  | Type | Params
+-------------------------------
+0 | model | CVIT | 310 M 
+-------------------------------
+310 M     Trainable params
+0         Non-trainable params
+310 M     Total params
+1,240.455 Total estimated model params size (MB)
+Validation sanity check: 0it [00:00, ?it/s]/Users/mengyuanz/Documents/projects/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/data_loading.py:105: UserWarning: The dataloader, val dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 8 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+Validation sanity check:   0%|          | 0/2 [00:00<?, ?it/s]                                                              /Users/mengyuanz/Documents/projects/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/data_loading.py:105: UserWarning: The dataloader, train dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 8 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+Training: -1it [00:00, ?it/s]Training:   0%|          | 0/219 [00:00<00:00, 99864.38it/s]Epoch 0:   0%|          | 0/219 [00:00<00:00, 1897.88it/s]  

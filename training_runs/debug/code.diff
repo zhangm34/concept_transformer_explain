@@ -1,0 +1,10 @@
+diff --git a/cvit_cub.py b/cvit_cub.py
+index aad59ea..303e8d4 100644
+--- a/cvit_cub.py
++++ b/cvit_cub.py
+@@ -48,4 +48,4 @@ torch.manual_seed(args.seed)
+ np.random.seed(args.seed)
+ 
+ model, trainer = run_exp(args)
+-test_results = trainer.test()
++test_results = trainer.test(model=model, ckpt_path=None) if args.debug else trainer.test()

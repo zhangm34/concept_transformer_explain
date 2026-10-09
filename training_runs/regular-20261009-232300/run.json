@@ -1,0 +1,38 @@
+{
+  "started_at_utc": "2026-10-09T23:23:00.735628+00:00",
+  "pid": 2036,
+  "status": "interrupted",
+  "debug": false,
+  "command": [
+    "/Users/mengyuanz/Documents/projects/concept_transformer_explain/.venv/bin/python",
+    "/Users/mengyuanz/Documents/projects/concept_transformer_explain/concept_transformer/cvit_cub.py",
+    "--data_dir",
+    "/Users/mengyuanz/Documents/projects/concept_transformer_explain/CUB-200-2011/CUB_200_2011",
+    "--batch_size",
+    "2",
+    "--num_workers",
+    "0",
+    "--max_epochs",
+    "50"
+  ],
+  "working_directory": "/Users/mengyuanz/Documents/projects/concept_transformer_explain/training_runs/regular-20261009-232300",
+  "runner": "/Users/mengyuanz/Documents/projects/concept_transformer_explain/scripts/run_training.py",
+  "repository_commit": "84c9c30108a6249e017d580c4120ea54af0064f7",
+  "entrypoint_sha256": "eb657842a0df2c8b013bfcb0afe9127ec5eecfffd2b2672fd1f418ef3e8008a4",
+  "max_epochs": 50,
+  "batch_size": 2,
+  "num_workers": 0,
+  "timing_file": "/Users/mengyuanz/Documents/projects/concept_transformer_explain/training_runs/regular-20261009-232300/batch_timings.jsonl",
+  "instrumentation": "Timing-only Lightning callback; original CLI, model, optimizer, loss, and trainer configuration retained.",
+  "device": "cpu",
+  "train_batches_per_epoch": 2997,
+  "validation_batches_per_epoch": [
+    500
+  ],
+  "training_started_at_utc": "2026-10-09T23:23:31.263229+00:00",
+  "error": "MisconfigurationException: `.test(ckpt_path=\"best\")` is set but `ModelCheckpoint` is not configured to save the best model.",
+  "elapsed_seconds": 51.743274166999996,
+  "finished_at_utc": "2026-10-09T23:23:52.664730+00:00",
+  "stop_reason": "User requested changing batch size from 2 to the repository default 32.",
+  "process_outcome_before_annotation": "failed"
+}

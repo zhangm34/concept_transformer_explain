@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/IBM/concept_transformer",
+  "commit": "84c9c30108a6249e017d580c4120ea54af0064f7",
+  "license": "Apache-2.0",
+  "source_layout": "Vendored tracked source files under concept_transformer/; upstream .git and pretrained checkpoints are excluded.",
+  "local_patch": "patches/debug-test-no-checkpoint.patch"
+}

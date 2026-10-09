@@ -1,0 +1,6 @@
+Generating all crops using original repository constructor; download=False.
+Cropping and saving images...: 100%|██████████| 11788/11788 [00:44<00:00, 263.16it/s]
+Crop generation completed in 46.00 seconds.
+All 11,788 crops verified; 200 sample crops fully decoded.
+Test-transform sample verified: image [3, 224, 224], global [13], spatial [196, 95], class 0.
+Audit saved to /Users/mengyuanz/Documents/projects/concept_transformer_explain/setup_logs/cub-cropping.json

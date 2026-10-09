@@ -1,0 +1,25 @@
+.venv/
+.uv-cache/
+.ipynb_checkpoints/
+__pycache__/
+.cache/
+setup_logs/*
+!setup_logs/environment.json
+!setup_logs/cub-cropping.json
+!setup_logs/cub-cropping.log
+.uv-python/
+.venv38-native/
+.venv-py312-backup/
+CUB-200-2011/
+
+# Local metadata, downloaded artifacts, model checkpoints and live event files.
+.DS_Store
+.env
+.env.*
+*.ckpt
+*.pth
+*.pt
+*.npz
+*.tgz
+*.tar.gz
+training_runs/**/logs/

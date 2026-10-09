@@ -1,0 +1,2 @@
+{"phase": "sanity_validation", "epoch": 0, "batch_index": 0, "compute_seconds": 6.523960707999997, "recorded_at_utc": "2026-10-09T23:23:24.713038+00:00"}
+{"phase": "sanity_validation", "epoch": 0, "batch_index": 1, "compute_seconds": 6.531811749999999, "recorded_at_utc": "2026-10-09T23:23:31.257697+00:00"}

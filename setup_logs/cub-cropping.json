@@ -1,0 +1,45 @@
+{
+  "started_at_utc": "2026-10-09T22:22:30.668257+00:00",
+  "data_root": "/Users/mengyuanz/Documents/projects/concept_transformer_explain/CUB-200-2011/CUB_200_2011",
+  "crop_directory": "/Users/mengyuanz/Documents/projects/concept_transformer_explain/CUB-200-2011/CUB_200_2011/CUB_200_2011/cropped",
+  "python_version": "3.8.20",
+  "python_architecture": "x86_64",
+  "source": "Original repository CUB2011Parts_dataset constructor and _crop_images method",
+  "download": false,
+  "crop": true,
+  "constructor_and_generation_seconds": 45.999785167,
+  "expected_crops": 11788,
+  "actual_jpg_files": 11788,
+  "species_directories": 200,
+  "train_images": 5994,
+  "test_images": 5794,
+  "total_bytes": 139350998,
+  "total_mib": 132.8954677581787,
+  "missing_files": [],
+  "empty_files": [],
+  "invalid_headers": [],
+  "fully_decoded_sample_count": 200,
+  "decode_errors": [],
+  "file_validation_seconds": 2.0155455840000016,
+  "test_sample": {
+    "image_shape": [
+      3,
+      224,
+      224
+    ],
+    "image_dtype": "torch.float32",
+    "global_concept_shape": [
+      13
+    ],
+    "spatial_concept_shape": [
+      196,
+      95
+    ],
+    "class_target": 0,
+    "image_id": 1
+  },
+  "test_sample_seconds": 1.115529500000001,
+  "success": true,
+  "total_seconds_after_imports": 49.142104959,
+  "finished_at_utc": "2026-10-09T22:23:19.810946+00:00"
+}

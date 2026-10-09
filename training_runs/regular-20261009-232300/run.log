@@ -1,0 +1,56 @@
+Starting regular training with the original CLI defaults and a timing-only callback.
+
+* RUN EXPERIMENT Namespace(attention_sparsity=0.5, baseline=False, batch_size=2, ctc_model='cub_cvit', data_dir='/Users/mengyuanz/Documents/projects/concept_transformer_explain/CUB-200-2011/CUB_200_2011', data_name='CUB2011Parts', debug=False, disable_lr_scheduler=False, expl_lambda=1.0, finetune_unfreeze_epoch=0, learning_rate=5e-05, max_epochs=50, num_workers=0, seed=42, warmup=10, weight_decay=0.001)
+
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+Files already downloaded and verified
+
+  | Name  | Type | Params
+-------------------------------
+0 | model | CVIT | 310 M 
+-------------------------------
+310 M     Trainable params
+0         Non-trainable params
+310 M     Total params
+1,240.455 Total estimated model params size (MB)
+Validation sanity check: 0it [00:00, ?it/s]/Users/mengyuanz/Documents/projects/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/data_loading.py:105: UserWarning: The dataloader, val dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 8 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+Validation sanity check:   0%|          | 0/2 [00:00<?, ?it/s]                                                              /Users/mengyuanz/Documents/projects/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/data_loading.py:105: UserWarning: The dataloader, train dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 8 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+Training: -1it [00:00, ?it/s]Training:   0%|          | 0/3497 [00:00<00:00, 110376.42it/s]Epoch 0:   0%|          | 0/3497 [00:00<00:00, 9619.96it/s]   /Users/mengyuanz/Documents/projects/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/trainer.py:1046: UserWarning: Detected KeyboardInterrupt, attempting graceful shutdown...
+  rank_zero_warn("Detected KeyboardInterrupt, attempting graceful shutdown...")
+Traceback (most recent call last):
+  File "/Users/mengyuanz/Documents/projects/concept_transformer_explain/scripts/run_training.py", line 119, in <module>
+    sys.argv = [str(entry)] + cli_args
+  File "/Users/mengyuanz/Documents/projects/concept_transformer_explain/.uv-python/cpython-3.8.20-macos-x86_64-none/lib/python3.8/runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "/Users/mengyuanz/Documents/projects/concept_transformer_explain/.uv-python/cpython-3.8.20-macos-x86_64-none/lib/python3.8/runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "/Users/mengyuanz/Documents/projects/concept_transformer_explain/.uv-python/cpython-3.8.20-macos-x86_64-none/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/Users/mengyuanz/Documents/projects/concept_transformer_explain/concept_transformer/cvit_cub.py", line 51, in <module>
+    test_results = trainer.test(model=model, ckpt_path=None) if args.debug else trainer.test()
+  File "/Users/mengyuanz/Documents/projects/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/trainer.py", line 702, in test
+    self.tested_ckpt_path = self.__load_ckpt_weights(ckpt_path)
+  File "/Users/mengyuanz/Documents/projects/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/trainer.py", line 1142, in __load_ckpt_weights
+    raise MisconfigurationException(
+pytorch_lightning.utilities.exceptions.MisconfigurationException: `.test(ckpt_path="best")` is set but `ModelCheckpoint` is not configured to save the best model.
+Traceback (most recent call last):
+  File "/Users/mengyuanz/Documents/projects/concept_transformer_explain/scripts/run_training.py", line 119, in <module>
+    sys.argv = [str(entry)] + cli_args
+  File "/Users/mengyuanz/Documents/projects/concept_transformer_explain/.uv-python/cpython-3.8.20-macos-x86_64-none/lib/python3.8/runpy.py", line 265, in run_path
+    return _run_module_code(code, init_globals, run_name,
+  File "/Users/mengyuanz/Documents/projects/concept_transformer_explain/.uv-python/cpython-3.8.20-macos-x86_64-none/lib/python3.8/runpy.py", line 97, in _run_module_code
+    _run_code(code, mod_globals, init_globals,
+  File "/Users/mengyuanz/Documents/projects/concept_transformer_explain/.uv-python/cpython-3.8.20-macos-x86_64-none/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/Users/mengyuanz/Documents/projects/concept_transformer_explain/concept_transformer/cvit_cub.py", line 51, in <module>
+    test_results = trainer.test(model=model, ckpt_path=None) if args.debug else trainer.test()
+  File "/Users/mengyuanz/Documents/projects/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/trainer.py", line 702, in test
+    self.tested_ckpt_path = self.__load_ckpt_weights(ckpt_path)
+  File "/Users/mengyuanz/Documents/projects/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/trainer.py", line 1142, in __load_ckpt_weights
+    raise MisconfigurationException(
+pytorch_lightning.utilities.exceptions.MisconfigurationException: `.test(ckpt_path="best")` is set but `ModelCheckpoint` is not configured to save the best model.
+Epoch 0:   0%|          | 0/3497 [00:21<20:56:11, 21.55s/it]
