@@ -1,0 +1,32 @@
+{
+  "started_at_utc": "2026-10-09T23:52:39.290952+00:00",
+  "command": [
+    "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/bin/python",
+    "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/concept_transformer/cvit_cub.py",
+    "--data_dir",
+    "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/CUB-200-2011/CUB_200_2011",
+    "--debug",
+    "--batch_size",
+    "2",
+    "--num_workers",
+    "0"
+  ],
+  "working_directory": "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/training_runs/debug",
+  "torch_home": "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.cache/torch",
+  "log_file": "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/training_runs/debug/run.log",
+  "repository_commit": "84c9c30108a6249e017d580c4120ea54af0064f7",
+  "mode": "repository --debug (fast_dev_run), Lightning 1.9 CPU trainer and in-memory testing",
+  "batch_size": 2,
+  "hostname": "c0700a-s9.ufhpc",
+  "platform": "Linux-5.14.0-687.42.1.el9_8.x86_64-x86_64-with-glibc2.2.5",
+  "python": "3.8.20",
+  "debug_test_fix": "trainer.test(model=model, ckpt_path=None) if args.debug else trainer.test()",
+  "entrypoint_sha256": "eb657842a0df2c8b013bfcb0afe9127ec5eecfffd2b2672fd1f418ef3e8008a4",
+  "num_workers": 0,
+  "runtime_sha256": "5c76b901a47c9545e43ac5707fcb330b6a5296ad91f337a9ac49adfb881533e3",
+  "lock_sha256": "7a419e53ed3f369ff4883ff2892b80b3e7889628bf6f4d0bb76a665a0cc39d5a",
+  "returncode": 1,
+  "success": false,
+  "elapsed_seconds": 80.55156528018415,
+  "finished_at_utc": "2026-10-09T23:53:59.855356+00:00"
+}

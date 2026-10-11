@@ -1,0 +1,38 @@
+{
+  "started_at_utc": "2026-10-10T01:29:46.566637+00:00",
+  "pid": 3533788,
+  "status": "training",
+  "debug": false,
+  "command": [
+    "/blue/yonghui.wu/zhangm3/concept_transformer_explain/.venv/bin/python",
+    "/blue/yonghui.wu/zhangm3/concept_transformer_explain/concept_transformer/cvit_cub.py",
+    "--data_dir",
+    "/blue/yonghui.wu/zhangm3/concept_transformer_explain/CUB-200-2011/CUB_200_2011",
+    "--batch_size",
+    "32",
+    "--num_workers",
+    "2",
+    "--max_epochs",
+    "50"
+  ],
+  "working_directory": "/blue/yonghui.wu/zhangm3/concept_transformer_explain/training_runs/l4-45387524",
+  "runner": "/blue/yonghui.wu/zhangm3/concept_transformer_explain/scripts/run_training.py",
+  "runner_sha256": "196bc63f1c1809ebc437aa46253ecf8a48fc27da85badb6eb65309ba163130f2",
+  "repository_commit": "84c9c30108a6249e017d580c4120ea54af0064f7",
+  "entrypoint_sha256": "0ef0ab6cca57a68df04015e7ee9284d7cdcb9e072dc6f75939c42eaff4046a7a",
+  "max_epochs": 50,
+  "batch_size": 32,
+  "num_workers": 2,
+  "timing_file": "/blue/yonghui.wu/zhangm3/concept_transformer_explain/training_runs/l4-45387524/batch_timings.jsonl",
+  "slurm_job_id": "45387524",
+  "slurm_partition": "hpg-turin",
+  "slurm_cpus_per_task": "4",
+  "require_cuda": true,
+  "instrumentation": "Timing callback; original model, optimizer, loss, and CLI defaults with Lightning 1.9 native AMP trainer.",
+  "device": "cuda:0",
+  "train_batches_per_epoch": 187,
+  "validation_batches_per_epoch": [
+    32
+  ],
+  "training_started_at_utc": "2026-10-10T01:30:02.894644+00:00"
+}

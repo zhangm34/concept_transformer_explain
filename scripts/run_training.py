@@ -9,19 +9,26 @@ import runpy
 import sys
 import time
 import traceback
-import subprocess
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--run-dir', type=Path, required=True)
 parser.add_argument('--max-epochs', type=int, default=50)
 parser.add_argument('--batch-size', type=int, default=32)
+parser.add_argument('--num-workers', type=int, default=0)
+parser.add_argument('--require-cuda', action='store_true', help='Fail unless an allocated CUDA GPU is available.')
 args = parser.parse_args()
+if args.batch_size < 2 or args.num_workers < 0 or args.max_epochs < 1:
+    parser.error('Use batch-size >= 2, num-workers >= 0, and max-epochs >= 1.')
+if args.require_cuda:
+    import torch
+    if not torch.cuda.is_available():
+        parser.error('--require-cuda requires a visible CUDA GPU; submit inside a GPU allocation.')
 RUN_DIR = args.run_dir.resolve()
 RUN_DIR.mkdir(parents=True, exist_ok=True)
 entry = PROJECT_DIR / 'concept_transformer' / 'cvit_cub.py'
 data_dir = PROJECT_DIR / 'CUB-200-2011' / 'CUB_200_2011'
-cli_args = ['--data_dir', str(data_dir), '--batch_size', str(args.batch_size), '--num_workers', '0',
+cli_args = ['--data_dir', str(data_dir), '--batch_size', str(args.batch_size), '--num_workers', str(args.num_workers),
             '--max_epochs', str(args.max_epochs)]
 command = [sys.executable, str(entry)] + cli_args
 os.environ['TORCH_HOME'] = str(PROJECT_DIR / '.cache' / 'torch')
@@ -37,11 +44,16 @@ record = {
     'pid': os.getpid(), 'status': 'initializing', 'debug': False,
     'command': command, 'working_directory': str(RUN_DIR),
     'runner': str(PROJECT_DIR / 'scripts' / 'run_training.py'),
+    'runner_sha256': hashlib.sha256((PROJECT_DIR / 'scripts' / 'run_training.py').read_bytes()).hexdigest(),
     'repository_commit': json.loads((PROJECT_DIR / 'upstream.json').read_text())['commit'],
     'entrypoint_sha256': hashlib.sha256(entry.read_bytes()).hexdigest(),
-    'max_epochs': args.max_epochs, 'batch_size': args.batch_size, 'num_workers': 0,
+    'max_epochs': args.max_epochs, 'batch_size': args.batch_size, 'num_workers': args.num_workers,
     'timing_file': str(RUN_DIR / 'batch_timings.jsonl'),
-    'instrumentation': 'Timing-only Lightning callback; original CLI, model, optimizer, loss, and trainer configuration retained.',
+    'slurm_job_id': os.environ.get('SLURM_JOB_ID'),
+    'slurm_partition': os.environ.get('SLURM_JOB_PARTITION'),
+    'slurm_cpus_per_task': os.environ.get('SLURM_CPUS_PER_TASK'),
+    'require_cuda': args.require_cuda,
+    'instrumentation': 'Timing callback; original model, optimizer, loss, and CLI defaults with Lightning 1.9 native AMP trainer.',
 }
 
 def save_record():
@@ -50,8 +62,8 @@ def save_record():
     temp.replace(record_path)
 
 save_record()
-(RUN_DIR / 'code.diff').write_text((PROJECT_DIR / 'patches/debug-test-no-checkpoint.patch').read_text())
-print('Starting regular training with the original CLI defaults and a timing-only callback.', flush=True)
+(RUN_DIR / 'code.diff').write_text(''.join(path.read_text() for path in sorted((PROJECT_DIR / 'patches').glob('*.patch'))))
+print('Starting regular training with repository CLI defaults, native AMP, and a timing callback.', flush=True)
 start = time.perf_counter()
 try:
     import pytorch_lightning as pl
@@ -80,10 +92,10 @@ try:
         def on_train_epoch_start(self, trainer, pl_module):
             self.last_train_end = None
 
-        def on_train_batch_start(self, trainer, pl_module, batch, batch_idx, dataloader_idx):
+        def on_train_batch_start(self, trainer, pl_module, batch, batch_idx, dataloader_idx=0):
             self.train_start = time.perf_counter()
 
-        def on_train_batch_end(self, trainer, pl_module, outputs, batch, batch_idx, dataloader_idx):
+        def on_train_batch_end(self, trainer, pl_module, outputs, batch, batch_idx, dataloader_idx=0):
             now = time.perf_counter()
             loss = outputs.get('loss') if isinstance(outputs, dict) else None
             self.write({'phase': 'train', 'epoch': int(trainer.current_epoch),
@@ -94,18 +106,18 @@ try:
                         'learning_rate': float(trainer.optimizers[0].param_groups[0]['lr'])})
             self.last_train_end = now
 
-        def on_validation_batch_start(self, trainer, pl_module, batch, batch_idx, dataloader_idx):
+        def on_validation_batch_start(self, trainer, pl_module, batch, batch_idx, dataloader_idx=0):
             self.phase_start = time.perf_counter()
 
-        def on_validation_batch_end(self, trainer, pl_module, outputs, batch, batch_idx, dataloader_idx):
+        def on_validation_batch_end(self, trainer, pl_module, outputs, batch, batch_idx, dataloader_idx=0):
             self.write({'phase': 'sanity_validation' if trainer.sanity_checking else 'validation',
                         'epoch': int(trainer.current_epoch), 'batch_index': int(batch_idx),
                         'compute_seconds': time.perf_counter() - self.phase_start})
 
-        def on_test_batch_start(self, trainer, pl_module, batch, batch_idx, dataloader_idx):
+        def on_test_batch_start(self, trainer, pl_module, batch, batch_idx, dataloader_idx=0):
             self.phase_start = time.perf_counter()
 
-        def on_test_batch_end(self, trainer, pl_module, outputs, batch, batch_idx, dataloader_idx):
+        def on_test_batch_end(self, trainer, pl_module, outputs, batch, batch_idx, dataloader_idx=0):
             self.write({'phase': 'test', 'batch_index': int(batch_idx),
                         'compute_seconds': time.perf_counter() - self.phase_start})
 

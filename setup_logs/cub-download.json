@@ -1,0 +1,277 @@
+{
+  "status": "passed",
+  "audit_started_utc": "2026-10-09T23:48:57.802200+00:00",
+  "source_url": "https://data.caltech.edu/records/65de6-vp158/files/CUB_200_2011.tgz?download=1",
+  "checksum_source_url": "https://data.caltech.edu/records/65de6-vp158",
+  "archive_path": "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.cache/downloads/CUB_200_2011.tgz",
+  "loader_root": "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/CUB-200-2011/CUB_200_2011",
+  "dataset_path": "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/CUB-200-2011/CUB_200_2011/CUB_200_2011",
+  "published_md5": "97eceeb196236b17998738112f37df78",
+  "archive_bytes": 1150585339,
+  "archive_download_completed_utc": "2026-10-09T23:42:37+00:00",
+  "archive_hashes": {
+    "md5": "97eceeb196236b17998738112f37df78",
+    "sha256": "0c685df5597a8b24909f6a7c9db6d11e008733779a671760afef78feb49bf081"
+  },
+  "archive_md5_matches_published": true,
+  "annotation_sha256": {
+    "images.txt": "e1cfc5ed1f4bd1b838040784b6f75c44f7a25d9b31707a3adab49ec694618c1f",
+    "classes.txt": "66a884364a73edde6c71eeb7fd5d8bb791e80979b64759bd6a5d5d209bdc02ba",
+    "image_class_labels.txt": "e9df8c96d897994a245746fe2c98914b9b31f5342bddc6e8b06bdfbf45e49b02",
+    "train_test_split.txt": "8bbbfcc09b4d3c9c6e3e40c9874bd863eb6658f4f456e472df1b33d3403d2600",
+    "bounding_boxes.txt": "c19d9f096c15564793408e5ba054b8d715a6805819d98f037c977f369ef4abd3",
+    "attributes.txt": "d5b158c197a8548071114150b2384c55cbd8881b32e57816c6ccc1437e946a1a",
+    "parts/parts.txt": "411a4ab5c7622c1b93bf84dd1e9f69a8a2feaecd79753ed13cfc27ec0c2aeef0",
+    "parts/part_locs.txt": "5be41e1e1e9165ff19632da203e30384fe8a359347c545ffc12ab99155b0415f",
+    "attributes/image_attribute_labels.txt": "5ebb9782d589f41a9c046bc7c5b1365e01839308e7cf88cbe83c0fb6d5362d98",
+    "attributes/class_attribute_labels_continuous.txt": "2f253a4be38f8c55f30d8456e845edf3d45bd6349504b4401ef464b78a4647bb"
+  },
+  "attribute_definitions_copied_and_equal": true,
+  "images": {
+    "referenced": 11788,
+    "files": 11788,
+    "fully_decoded": 11788,
+    "pil_verify_passed": 11788,
+    "rgb_conversion_passed": 11788,
+    "modes": {
+      "RGB": 11780,
+      "L": 8
+    },
+    "ordered_content_manifest_sha256": "5dcfbc2592a023045b93ca44fd98d7016685dbc5021a64b45d1f6a5e2e5e5296",
+    "bounding_boxes_positive_finite": 11788,
+    "bounding_boxes_beyond_image_plus_one_pixel": 8,
+    "bounding_box_boundary_examples": [
+      {
+        "image_id": 960,
+        "bbox": [
+          27.0,
+          6.0,
+          148.0,
+          127.0
+        ],
+        "size": [
+          177,
+          131
+        ]
+      },
+      {
+        "image_id": 999,
+        "bbox": [
+          2.0,
+          69.0,
+          457.0,
+          311.0
+        ],
+        "size": [
+          500,
+          375
+        ]
+      },
+      {
+        "image_id": 1218,
+        "bbox": [
+          92.0,
+          51.0,
+          440.0,
+          303.0
+        ],
+        "size": [
+          500,
+          410
+        ]
+      },
+      {
+        "image_id": 3412,
+        "bbox": [
+          204.0,
+          120.0,
+          295.0,
+          257.0
+        ],
+        "size": [
+          500,
+          375
+        ]
+      },
+      {
+        "image_id": 5007,
+        "bbox": [
+          34.0,
+          33.0,
+          438.0,
+          326.0
+        ],
+        "size": [
+          500,
+          333
+        ]
+      },
+      {
+        "image_id": 6156,
+        "bbox": [
+          16.0,
+          69.0,
+          366.0,
+          267.0
+        ],
+        "size": [
+          500,
+          334
+        ]
+      },
+      {
+        "image_id": 6273,
+        "bbox": [
+          3.0,
+          31.0,
+          387.0,
+          304.0
+        ],
+        "size": [
+          500,
+          333
+        ]
+      },
+      {
+        "image_id": 9762,
+        "bbox": [
+          35.0,
+          16.0,
+          162.0,
+          101.0
+        ],
+        "size": [
+          194,
+          146
+        ]
+      }
+    ]
+  },
+  "parts": {
+    "definitions": 15,
+    "rows": 176820,
+    "unique_image_part_pairs": 176820,
+    "all_images_have_all_15_parts": true,
+    "visibility_counts": {
+      "0": 35413,
+      "1": 141407
+    }
+  },
+  "attributes": {
+    "definitions": 312,
+    "rows": 3677856,
+    "unique_image_attribute_pairs": 3677856,
+    "all_images_have_all_312_attributes": true,
+    "presence_counts": {
+      "0": 3306809,
+      "1": 371047
+    },
+    "certainty_counts": {
+      "3": 1021155,
+      "1": 394906,
+      "4": 2033774,
+      "2": 228021
+    },
+    "negative_annotation_times": 0,
+    "source_rows_with_surplus_zero_token": 606,
+    "surplus_token_image_id_counts": {
+      "2275": 303,
+      "9364": 303
+    },
+    "surplus_token_examples": [
+      {
+        "line": 709498,
+        "fields": [
+          "2275",
+          "10",
+          "0",
+          "1",
+          "0",
+          "1.509"
+        ]
+      },
+      {
+        "line": 709499,
+        "fields": [
+          "2275",
+          "11",
+          "0",
+          "1",
+          "0",
+          "1.509"
+        ]
+      },
+      {
+        "line": 709500,
+        "fields": [
+          "2275",
+          "12",
+          "0",
+          "1",
+          "0",
+          "1.509"
+        ]
+      },
+      {
+        "line": 709501,
+        "fields": [
+          "2275",
+          "13",
+          "0",
+          "1",
+          "0",
+          "1.509"
+        ]
+      },
+      {
+        "line": 709502,
+        "fields": [
+          "2275",
+          "14",
+          "0",
+          "1",
+          "0",
+          "1.509"
+        ]
+      }
+    ],
+    "source_annotation_file_preserved": true,
+    "audit_time_field": "Last whitespace-separated token; surplus zero is reported, never rewritten.",
+    "class_attribute_matrix_shape": [
+      200,
+      312
+    ],
+    "class_attribute_percentages_in_range": true
+  },
+  "split_counts": {
+    "train": 5994,
+    "test": 5794
+  },
+  "classes": {
+    "count": 200,
+    "min_images": 41,
+    "max_images": 60,
+    "all_classes_in_both_splits": true,
+    "image_folder_names_match_labels": true
+  },
+  "source_irregularities": [
+    "606 official attribute rows contain a surplus zero token after certainty; image/attribute/presence fields remain valid and source annotations are preserved.",
+    "8 official bounding boxes extend beyond image bounds by more than one pixel; repository Pillow cropping preserves its original padding behavior."
+  ],
+  "checks": [
+    "Official archive matches CaltechDATA published MD5.",
+    "All annotation files exist and SHA256 hashes are recorded.",
+    "Image IDs are unique and exactly 1..11788 across image/label/split/bbox tables.",
+    "All 11788 JPEG files pass PIL.verify, complete decoding, and RGB conversion.",
+    "Images directory matches images.txt without missing or extra JPEGs.",
+    "All class labels and image directory names agree; all classes appear in both splits.",
+    "5994 training and 5794 test images; splits are binary.",
+    "All bounding boxes are finite, nonnegative, and have positive dimensions.",
+    "Every image has one row for each of 15 parts; visibility is binary and coordinates finite.",
+    "Every image has one row for each of 312 attributes; presence binary, certainty 1..4, time finite.",
+    "Class attribute percentages form a finite 200x312 matrix in [0,100].",
+    "Inner attributes.txt matches the official outer definitions."
+  ],
+  "audit_completed_utc": "2026-10-09T23:49:54.006455+00:00",
+  "duration_seconds": 56.204
+}

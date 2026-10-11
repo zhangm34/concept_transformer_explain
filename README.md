@@ -1,133 +1,75 @@
 # Concept Transformer assessment
 
-The walkthrough currently covers Step 2, environment setup, and Step 3,
-manual data download and preparation, plus Step 4's small debug training run.
-We will add the remaining assessment steps as we work through them together.
+The executed `concept_transformer_walkthrough.ipynb` covers environment setup, official CUB download/preparation, and a one-batch CPU debug training/evaluation run. Full GPU training and reproduction of the paper metrics remain pending.
 
-Use uv with the project-local `.venv`, running **Python 3.8.20 under Rosetta
-(x86_64)**. This architecture was chosen because the original SciPy 1.7.1 and
-pandas 1.3.3 pins lack macOS ARM64 wheels. The original PyTorch 1.10.0 stack
-uses **CPU** on this Mac; it predates Apple's MPS backend.
+The project uses **Linux x86_64 Python 3.8.20** in a project-local uv `.venv`. The installed **PyTorch 2.0.1+cu118 / torchvision 0.15.2+cu118** wheels bundle CUDA 11.8 and also run on CPU-only nodes. Lightning 1.9.5, Bolts 0.7.0, and TorchMetrics 0.11.4 form the selected training runtime. Scientific/data/model dependencies retain their selected original pins. All differences from upstream requirements are listed in the notebook.
 
-To recreate the environment on an Apple Silicon Mac with Rosetta installed,
-run from this directory:
+Recreate and launch from this directory:
 
 ```bash
-uv python install cpython-3.8.20-macos-x86_64-none
-uv venv --python cpython-3.8.20-macos-x86_64-none .venv
+export UV_PYTHON_INSTALL_DIR="$PWD/.uv-python"
+export UV_CACHE_DIR="$PWD/.uv-cache"
+uv python install 3.8.20
+uv venv --python 3.8.20 .venv
 uv sync --locked --python .venv/bin/python
-uv run --locked python -m ipykernel install --sys-prefix \
-  --name concept_transformer --display-name "Concept Transformer (Python 3.8 Rosetta)"
-uv run --locked jupyter lab concept_transformer_walkthrough.ipynb
+.venv/bin/python -m ipykernel install --sys-prefix \
+  --name concept_transformer --display-name "Concept Transformer (HPG Python 3.8)"
+.venv/bin/jupyter lab concept_transformer_walkthrough.ipynb
 ```
 
-Select **Concept Transformer (Python 3.8 Rosetta)** and run the notebook from
-the top. It checks the interpreter, package versions, repository imports,
-PyTorch devices, and a small forward/backward computation. All notebook
-project paths are relative to the configurable `PROJECT_DIR`.
+Select **Concept Transformer (HPG Python 3.8)** and run from the top. This kernelspec is installed inside the venv; launch Jupyter with that venv, or configure OnDemand to use it. Package consistency, repository imports, CLI help, and tensor forward/backward checks precede data and training checks. `uv.lock` fixes the complete Linux dependency resolution. Restart the kernel after any dependency changes.
 
-Model package versions match `concept_transformer/requirements.txt`.
-**NumPy differs between upstream documents:** the GitHub README lists 1.20.3,
-while requirements.txt pins 1.22.0. We use 1.22.0, following the README's
-instruction to install from requirements.txt. This is documented in the
-notebook's compatibility log.
+The runtime uses Lightning's supported accelerator/device API and native mixed precision on CUDA. Model-summary/progress callbacks replace removed trainer flags, and accuracy uses the explicit multiclass task. The architecture, losses, AdamW optimizer, augmentation, and default model hyperparameters retain the repository implementation. Source changes are recorded in `patches/hpg-runtime.patch` and `patches/debug-test-no-checkpoint.patch`. This runtime differs from the original dependency stack and has only been exercised on CPU here.
 
-Upstream leaves epyc unpinned; we select 1.7.2. Additional compatibility pins
-and notebook tools are specified in `pyproject.toml`. `uv.lock` records the
-complete dependency resolution. Keep that file and use `uv sync --locked`
-for reproducible installs. If changing dependencies, use `uv sync` to update
-the lock, then restart the notebook kernel.
+NumPy uses **1.22.0** from upstream `requirements.txt`; upstream README lists 1.20.3. The complete selected pins are in `pyproject.toml`. The IBM revision is recorded in `upstream.json`; the Apache-2.0 license is retained in `concept_transformer/LICENSE`.
 
-The earlier Python 3.12 environment is retained at `.venv-py312-backup`.
-Installation logs are in `setup_logs/`. Environment verification does not
-establish that a full CUB training run or the paper's metrics have been
-reproduced; those are later assessment steps.
-
-Verified: pip dependency consistency, repository imports, `cvit_cub.py --help`,
-original Lightning Trainer construction, and PyTorch CPU forward/backward
-computation. Notebook cells are executed with their outputs saved.
-
-The manually downloaded CUB data is under `CUB-200-2011/`. Set `DATA_DIR` to
-`CUB-200-2011/CUB_200_2011` (the outer directory), as the loader appends
-`CUB_200_2011/` itself. All 11,788 images and required source annotations
-are present. The user downloaded the data manually from the official Caltech
-dataset page linked in the assessment:
-https://www.vision.caltech.edu/datasets/cub_200_2011/.
-The notebook copies the outer `attributes.txt` into the inner dataset
-directory and validates this placement with the original loader. All
-11,788 bounding-box crops have now been generated with the unchanged
-repository code and `download=False`: 46 seconds for metadata loading and
-generation, 49 seconds including verification, and 132.90 MiB of output.
-All crops passed Pillow verification; 200 representative crops fully
-decoded, and a transformed loader sample passed its shape checks. The
-notebook quotes the original preparation code and reuses a complete crop
-cache on subsequent runs. Audit and log are saved in
-`setup_logs/cub-cropping.json` and `setup_logs/cub-cropping.log`.
-Pretrained ViT weights are now cached under `.cache/torch/`. A small CPU
-debug run completed training, validation, and testing with batch size 2
-and no data-loader workers in approximately 50 seconds. Regular training has
-started with the repository-default batch size 32 and 50 epochs, after
-an initial regular batch-size-2 run was interrupted at the user's request.
-This repository records a work-in-progress snapshot, not completed training
-results. Segmentation masks are present but unused by this loader.
-
-
-To repeat the debug run:
+Download and verify the official CUB archive:
 
 ```bash
-uv run --locked python scripts/run_debug.py
+.venv/bin/python scripts/download_cub.py
+.venv/bin/python scripts/download_cub.py --check-only
+.venv/bin/python scripts/verify_cub.py  # full archive/image/annotation audit
 ```
 
-The runner saves the exact CLI command and raw output under
-`training_runs/debug/`. Batch size 1 exposes an upstream spatial-loss
-mask-shape bug, so we use batch size 2. One debug-only line in
-`concept_transformer/cvit_cub.py` explicitly passes the in-memory model to
-`trainer.test`, because Lightning disables checkpoint saving in debug
-mode. Normal runs retain the original evaluation call. The change is
-recorded in `training_runs/debug/code.diff`; both failed attempts are
-also preserved there in separate subdirectories. The notebook documents
-these issues and displays the successful run's one-batch metrics. These
-metrics are a pipeline check, not an estimate of dataset performance.
+The archive is cached at `.cache/downloads/CUB_200_2011.tgz` and verified against the CaltechDATA published MD5 `97eceeb196236b17998738112f37df78`. The loader root is `CUB-200-2011/CUB_200_2011`, with the actual dataset inside its nested `CUB_200_2011` directory. The downloader copies the outer `attributes.txt` into that inner directory. Optional segmentation masks are unused and omitted.
 
-The notebook reuses the recorded successful debug run by default. Set
-`RERUN_DEBUG = True` in Section 4 to run it again. If no run record exists,
-that cell executes the debug runner automatically.
+The fresh download audit is in `setup_logs/cub-download.json` and `.log`: every original image is fully decoded and all annotation IDs/pairs are verified. Source annotation irregularities are recorded without rewriting the official files. The notebook generates all 11,788 bounding-box crops with the repository code, fully decodes each crop, and checks a transformed sample. Current crop audit: `setup_logs/cub-cropping.json` and `.log`. Pretrained ViT-Large weights are cached in `.cache/torch/`.
 
-
-This repository vendors the IBM source at the revision in `upstream.json`.
-The upstream Apache-2.0 license is retained in `concept_transformer/LICENSE`,
-and our debug-only change is recorded in
-`patches/debug-test-no-checkpoint.patch`. The upstream Git metadata and
-MNIST model checkpoints are not included. The provenance manifest lets
-the notebook and runners identify the upstream revision after cloning.
-
-Dataset files, virtual environments, downloaded weights, and training
-checkpoints are excluded from Git. To reproduce the data setup:
+Repeat the CPU debug check within an allocated CPU session:
 
 ```bash
-uv run --locked python scripts/download_cub.py
-uv run --locked python scripts/download_cub.py --check-only
+OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 \
+  .venv/bin/python scripts/run_debug.py
 ```
 
-The script downloads the official Caltech archive, checks its published
-MD5, extracts it into the loader-compatible directory structure, copies
-`attributes.txt` into place, and verifies image paths and required
-annotations. If the data is already present, it reuses it. The notebook
-then generates bounding-box crops. Optional segmentation masks are not
-needed by this model. The script's local verification mode has been run;
-we have not repeated the approximately 1.2 GB download.
+Use thread counts within your Slurm allocation. Debug mode runs one training batch, one validation batch, and one test batch. Batch size 2 avoids the upstream spatial-loss mask bug at batch size 1. Testing explicitly passes the data module; debug mode uses the in-memory model and regular mode selects the best checkpoint. Logs, metrics, current-platform metadata, and runtime/lock hashes are saved under `training_runs/debug/`. The notebook only reuses a record matching its setup. These metrics check pipeline execution and do not estimate dataset performance. The original validation subset overlaps the official test split; this behavior is documented in the notebook.
 
-To run regular training with the repository batch size (32):
+For regular training, use the prepared **L4 Slurm script** `scripts/train_l4.sbatch`. It requests account/QOS `yonghui.wu`, partition `hpg-turin`, `gpu:l4:1`, four CPUs, 32 GiB memory, and 24 hours. It verifies CUDA mixed precision before starting batch-size-32, 50-epoch training with two data-loader workers. `--require-cuda` prevents an accidental CPU fallback. The runner records Slurm metadata and per-batch timing/loss; normal checkpoint and TensorBoard outputs remain enabled.
+
+HPG requires a **Blue working directory** for computation. Prepare a separate working copy and recreate its venv at its own path:
 
 ```bash
-uv run --locked python scripts/run_training.py \
-  --run-dir training_runs/my-run --batch-size 32 --max-epochs 50
+SOURCE=/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain
+WORK=/blue/yonghui.wu/zhangm3/concept_transformer_explain
+mkdir -p "$WORK"
+rsync -a --exclude=.venv --exclude=.uv-cache --exclude=.uv-python \
+  --exclude=.git --exclude=.cache/downloads --exclude=training_runs \
+  "$SOURCE/" "$WORK/"
+cd "$WORK"
+export UV_PYTHON_INSTALL_DIR="$PWD/.uv-python"
+export UV_CACHE_DIR="$PWD/.uv-cache"
+uv python install 3.8.20
+uv venv --python 3.8.20 .venv
+uv sync --locked --python .venv/bin/python
+mkdir -p training_runs
+sbatch --test-only scripts/train_l4.sbatch
+sbatch scripts/train_l4.sbatch
 ```
 
-The runner adds only a timing callback and retains the repository's
-training configuration. It records per-batch timing and loss in
-`batch_timings.jsonl`; TensorBoard logs and best-model checkpoints are
-created by the original training code. The committed regular-run logs
-and metadata are snapshots captured while training is in progress.
-`training_runs/active_run.json` contains the originating machine's run
-path and PID, not a process that starts when the repository is cloned.
+Run the preparation commands in an allocated CPU session with `uv` available. This copies prepared data and cached weights; it excludes the old venv because environments contain absolute paths. Create `training_runs/` before submitting so Slurm can open the output/error files. The batch script preserves Slurm's `CUDA_VISIBLE_DEVICES` and uses the venv directly without an inherited Conda environment or an Apex/CUDA toolkit module.
+
+Monitor with `squeue -u zhangm3`; logs are `training_runs/slurm-<job-id>.out` and `.err`, with training artifacts under `training_runs/l4-<job-id>/`. GPU training job **45387524** is the current submission on `hpg-turin`; use `squeue -j 45387524` for live status. Earlier attempts 45377754 and 45387301 failed in timing-hook and metadata compatibility code before training, and their logs are retained. Both errors are fixed; the actual runner was tested end-to-end with a small CPU model. Hyperparameters remain unchanged. The submission record is `setup_logs/slurm-submission.json`; measured timing estimates, when available, are in `setup_logs/training-eta.json`. Older regular-run records and `training_runs/active_run.json` are historical snapshots; their process IDs do not identify active jobs here. The 24-hour request is an initial walltime allocation, not a measured completion estimate.
+
+Dataset files, virtual environments, downloaded weights, and checkpoints are excluded from Git. Environment audit: `setup_logs/environment.json`; install log: `setup_logs/uv-sync-hpg.log`.
+
+References: [HPG GPU requests](https://docs.rc.ufl.edu/scheduler/gpu_access/) and [HPG computation](https://docs.rc.ufl.edu/quickstart/computation/).

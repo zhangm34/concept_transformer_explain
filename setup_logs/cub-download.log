@@ -1,0 +1,45 @@
+Downloading official archive (approximately 1.2 GB): https://data.caltech.edu/records/65de6-vp158/files/CUB_200_2011.tgz?download=1
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/scripts/download_cub.py:73: DeprecationWarning: Python 3.14 will, by default, filter extracted tar archives and reject files or modify their metadata. Use the filter argument to control this behavior.
+  bundle.extractall(str(root), members=members)
+Extracted official archive into: /orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/CUB-200-2011/CUB_200_2011
+Copied attribute definitions into: /orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/CUB-200-2011/CUB_200_2011/CUB_200_2011/attributes.txt
+Verified 11,788 referenced images and required annotation files.
+Source data is ready. The notebook generates bounding-box crops with the repository code.
+Segmentation masks are optional and unused by this model; this script does not download them.
+Audit started: 2026-10-09T23:45:03.917103+00:00
+Published archive MD5 verified.
+Audit report: /orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/setup_logs/cub-download.json
+Traceback (most recent call last):
+  File "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/setup_logs/cub-download-audit.py", line 222, in <module>
+    main()
+  File "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/setup_logs/cub-download-audit.py", line 69, in main
+    parts = indexed('parts/parts.txt', 2)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/setup_logs/cub-download-audit.py", line 38, in indexed
+    assert len(fields) == width, (name, line_number, fields)
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('parts/parts.txt', 7, ['7', 'left', 'eye'])
+Audit started: 2026-10-09T23:45:59.070025+00:00
+Published archive MD5 verified.
+Image content verified and decoded: 2000/11788
+Image content verified and decoded: 4000/11788
+Image content verified and decoded: 6000/11788
+Image content verified and decoded: 8000/11788
+Image content verified and decoded: 10000/11788
+Audit report: /orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/setup_logs/cub-download.json
+Traceback (most recent call last):
+  File "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/setup_logs/cub-download-audit.py", line 222, in <module>
+    main()
+  File "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/setup_logs/cub-download-audit.py", line 163, in main
+    assert len(fields) == 5, (attr_rows, fields)
+           ^^^^^^^^^^^^^^^^
+AssertionError: (709497, ['2275', '10', '0', '1', '0', '1.509'])
+Audit started: 2026-10-09T23:48:57.802200+00:00
+Published archive MD5 verified.
+Image content verified and decoded: 2000/11788
+Image content verified and decoded: 4000/11788
+Image content verified and decoded: 6000/11788
+Image content verified and decoded: 8000/11788
+Image content verified and decoded: 10000/11788
+Full source image and annotation audit passed.
+Audit report: /orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/setup_logs/cub-download.json

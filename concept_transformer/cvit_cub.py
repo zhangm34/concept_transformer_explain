@@ -48,4 +48,8 @@ torch.manual_seed(args.seed)
 np.random.seed(args.seed)
 
 model, trainer = run_exp(args)
-test_results = trainer.test(model=model, ckpt_path=None) if args.debug else trainer.test()
+test_results = trainer.test(
+    model=model,
+    datamodule=trainer.datamodule,
+    ckpt_path=None if args.debug else "best",
+)

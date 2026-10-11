@@ -1,0 +1,416 @@
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/pl_bolts/models/self_supervised/amdim/amdim_module.py:34: UnderReviewWarning: The feature generate_power_seq is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  "lr_options": generate_power_seq(LEARNING_RATE_CIFAR, 11),
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/pl_bolts/models/self_supervised/amdim/amdim_module.py:92: UnderReviewWarning: The feature FeatureMapContrastiveTask is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  contrastive_task: Union[FeatureMapContrastiveTask] = FeatureMapContrastiveTask("01, 02, 11"),
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/pl_bolts/losses/self_supervised_learning.py:228: UnderReviewWarning: The feature AmdimNCELoss is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.nce_loss = AmdimNCELoss(tclip)
+
+* RUN EXPERIMENT Namespace(attention_sparsity=0.5, baseline=False, batch_size=2, ctc_model='cub_cvit', data_dir='/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/CUB-200-2011/CUB_200_2011', data_name='CUB2011Parts', debug=True, disable_lr_scheduler=False, expl_lambda=1.0, finetune_unfreeze_epoch=0, learning_rate=5e-05, max_epochs=50, num_workers=0, seed=42, warmup=10, weight_decay=0.001)
+
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/torch/cuda/__init__.py:546: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/connectors/accelerator_connector.py:406: LightningDeprecationWarning: The NVIDIA/apex AMP implementation has been deprecated upstream. Consequently, its integration inside PyTorch Lightning has been deprecated in v1.9.0 and will be removed in v2.0.0. The `Trainer(amp_backend='native')` argument is deprecated. Removing this argument will avoid this message, it will select PyTorch's implementation automatically.
+  rank_zero_deprecation(
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/lightning_fabric/plugins/environments/slurm.py:165: PossibleUserWarning: The `srun` command is available on your system but is not used. HINT: If your intention is to run Lightning on SLURM, prepend your python command with `srun` like so: srun python /orange/yonghui.wu/zhangm3/2026/concept_transformer_ ...
+  rank_zero_warn(
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+Running in `fast_dev_run` mode: will run the requested loop using 1 batch(es). Logging and checkpointing is suppressed.
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/lightning_fabric/plugins/environments/slurm.py:165: PossibleUserWarning: The `srun` command is available on your system but is not used. HINT: If your intention is to run Lightning on SLURM, prepend your python command with `srun` like so: srun python /orange/yonghui.wu/zhangm3/2026/concept_transformer_ ...
+  rank_zero_warn(
+Files already downloaded and verified
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/concept_transformer/ctc/ctc_model.py:182: UnderReviewWarning: The feature LinearWarmupCosineAnnealingLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  scheduler = LinearWarmupCosineAnnealingLR(
+
+    | Name                                                  | Type                  | Params
+--------------------------------------------------------------------------------------------------
+0   | model                                                 | CVIT                  | 310 M 
+1   | model.feature_extractor                               | VisionTransformer     | 303 M 
+2   | model.feature_extractor.patch_embed                   | PatchEmbed            | 787 K 
+3   | model.feature_extractor.patch_embed.proj              | Conv2d                | 787 K 
+4   | model.feature_extractor.patch_embed.norm              | Identity              | 0     
+5   | model.feature_extractor.pos_drop                      | Dropout               | 0     
+6   | model.feature_extractor.blocks                        | Sequential            | 302 M 
+7   | model.feature_extractor.blocks.0                      | Block                 | 12.6 M
+8   | model.feature_extractor.blocks.0.norm1                | LayerNorm             | 2.0 K 
+9   | model.feature_extractor.blocks.0.attn                 | Attention             | 4.2 M 
+10  | model.feature_extractor.blocks.0.attn.qkv             | Linear                | 3.1 M 
+11  | model.feature_extractor.blocks.0.attn.attn_drop       | Dropout               | 0     
+12  | model.feature_extractor.blocks.0.attn.proj            | Linear                | 1.0 M 
+13  | model.feature_extractor.blocks.0.attn.proj_drop       | Dropout               | 0     
+14  | model.feature_extractor.blocks.0.drop_path            | Identity              | 0     
+15  | model.feature_extractor.blocks.0.norm2                | LayerNorm             | 2.0 K 
+16  | model.feature_extractor.blocks.0.mlp                  | Mlp                   | 8.4 M 
+17  | model.feature_extractor.blocks.0.mlp.fc1              | Linear                | 4.2 M 
+18  | model.feature_extractor.blocks.0.mlp.act              | GELU                  | 0     
+19  | model.feature_extractor.blocks.0.mlp.fc2              | Linear                | 4.2 M 
+20  | model.feature_extractor.blocks.0.mlp.drop             | Dropout               | 0     
+21  | model.feature_extractor.blocks.1                      | Block                 | 12.6 M
+22  | model.feature_extractor.blocks.1.norm1                | LayerNorm             | 2.0 K 
+23  | model.feature_extractor.blocks.1.attn                 | Attention             | 4.2 M 
+24  | model.feature_extractor.blocks.1.attn.qkv             | Linear                | 3.1 M 
+25  | model.feature_extractor.blocks.1.attn.attn_drop       | Dropout               | 0     
+26  | model.feature_extractor.blocks.1.attn.proj            | Linear                | 1.0 M 
+27  | model.feature_extractor.blocks.1.attn.proj_drop       | Dropout               | 0     
+28  | model.feature_extractor.blocks.1.drop_path            | Identity              | 0     
+29  | model.feature_extractor.blocks.1.norm2                | LayerNorm             | 2.0 K 
+30  | model.feature_extractor.blocks.1.mlp                  | Mlp                   | 8.4 M 
+31  | model.feature_extractor.blocks.1.mlp.fc1              | Linear                | 4.2 M 
+32  | model.feature_extractor.blocks.1.mlp.act              | GELU                  | 0     
+33  | model.feature_extractor.blocks.1.mlp.fc2              | Linear                | 4.2 M 
+34  | model.feature_extractor.blocks.1.mlp.drop             | Dropout               | 0     
+35  | model.feature_extractor.blocks.2                      | Block                 | 12.6 M
+36  | model.feature_extractor.blocks.2.norm1                | LayerNorm             | 2.0 K 
+37  | model.feature_extractor.blocks.2.attn                 | Attention             | 4.2 M 
+38  | model.feature_extractor.blocks.2.attn.qkv             | Linear                | 3.1 M 
+39  | model.feature_extractor.blocks.2.attn.attn_drop       | Dropout               | 0     
+40  | model.feature_extractor.blocks.2.attn.proj            | Linear                | 1.0 M 
+41  | model.feature_extractor.blocks.2.attn.proj_drop       | Dropout               | 0     
+42  | model.feature_extractor.blocks.2.drop_path            | Identity              | 0     
+43  | model.feature_extractor.blocks.2.norm2                | LayerNorm             | 2.0 K 
+44  | model.feature_extractor.blocks.2.mlp                  | Mlp                   | 8.4 M 
+45  | model.feature_extractor.blocks.2.mlp.fc1              | Linear                | 4.2 M 
+46  | model.feature_extractor.blocks.2.mlp.act              | GELU                  | 0     
+47  | model.feature_extractor.blocks.2.mlp.fc2              | Linear                | 4.2 M 
+48  | model.feature_extractor.blocks.2.mlp.drop             | Dropout               | 0     
+49  | model.feature_extractor.blocks.3                      | Block                 | 12.6 M
+50  | model.feature_extractor.blocks.3.norm1                | LayerNorm             | 2.0 K 
+51  | model.feature_extractor.blocks.3.attn                 | Attention             | 4.2 M 
+52  | model.feature_extractor.blocks.3.attn.qkv             | Linear                | 3.1 M 
+53  | model.feature_extractor.blocks.3.attn.attn_drop       | Dropout               | 0     
+54  | model.feature_extractor.blocks.3.attn.proj            | Linear                | 1.0 M 
+55  | model.feature_extractor.blocks.3.attn.proj_drop       | Dropout               | 0     
+56  | model.feature_extractor.blocks.3.drop_path            | Identity              | 0     
+57  | model.feature_extractor.blocks.3.norm2                | LayerNorm             | 2.0 K 
+58  | model.feature_extractor.blocks.3.mlp                  | Mlp                   | 8.4 M 
+59  | model.feature_extractor.blocks.3.mlp.fc1              | Linear                | 4.2 M 
+60  | model.feature_extractor.blocks.3.mlp.act              | GELU                  | 0     
+61  | model.feature_extractor.blocks.3.mlp.fc2              | Linear                | 4.2 M 
+62  | model.feature_extractor.blocks.3.mlp.drop             | Dropout               | 0     
+63  | model.feature_extractor.blocks.4                      | Block                 | 12.6 M
+64  | model.feature_extractor.blocks.4.norm1                | LayerNorm             | 2.0 K 
+65  | model.feature_extractor.blocks.4.attn                 | Attention             | 4.2 M 
+66  | model.feature_extractor.blocks.4.attn.qkv             | Linear                | 3.1 M 
+67  | model.feature_extractor.blocks.4.attn.attn_drop       | Dropout               | 0     
+68  | model.feature_extractor.blocks.4.attn.proj            | Linear                | 1.0 M 
+69  | model.feature_extractor.blocks.4.attn.proj_drop       | Dropout               | 0     
+70  | model.feature_extractor.blocks.4.drop_path            | Identity              | 0     
+71  | model.feature_extractor.blocks.4.norm2                | LayerNorm             | 2.0 K 
+72  | model.feature_extractor.blocks.4.mlp                  | Mlp                   | 8.4 M 
+73  | model.feature_extractor.blocks.4.mlp.fc1              | Linear                | 4.2 M 
+74  | model.feature_extractor.blocks.4.mlp.act              | GELU                  | 0     
+75  | model.feature_extractor.blocks.4.mlp.fc2              | Linear                | 4.2 M 
+76  | model.feature_extractor.blocks.4.mlp.drop             | Dropout               | 0     
+77  | model.feature_extractor.blocks.5                      | Block                 | 12.6 M
+78  | model.feature_extractor.blocks.5.norm1                | LayerNorm             | 2.0 K 
+79  | model.feature_extractor.blocks.5.attn                 | Attention             | 4.2 M 
+80  | model.feature_extractor.blocks.5.attn.qkv             | Linear                | 3.1 M 
+81  | model.feature_extractor.blocks.5.attn.attn_drop       | Dropout               | 0     
+82  | model.feature_extractor.blocks.5.attn.proj            | Linear                | 1.0 M 
+83  | model.feature_extractor.blocks.5.attn.proj_drop       | Dropout               | 0     
+84  | model.feature_extractor.blocks.5.drop_path            | Identity              | 0     
+85  | model.feature_extractor.blocks.5.norm2                | LayerNorm             | 2.0 K 
+86  | model.feature_extractor.blocks.5.mlp                  | Mlp                   | 8.4 M 
+87  | model.feature_extractor.blocks.5.mlp.fc1              | Linear                | 4.2 M 
+88  | model.feature_extractor.blocks.5.mlp.act              | GELU                  | 0     
+89  | model.feature_extractor.blocks.5.mlp.fc2              | Linear                | 4.2 M 
+90  | model.feature_extractor.blocks.5.mlp.drop             | Dropout               | 0     
+91  | model.feature_extractor.blocks.6                      | Block                 | 12.6 M
+92  | model.feature_extractor.blocks.6.norm1                | LayerNorm             | 2.0 K 
+93  | model.feature_extractor.blocks.6.attn                 | Attention             | 4.2 M 
+94  | model.feature_extractor.blocks.6.attn.qkv             | Linear                | 3.1 M 
+95  | model.feature_extractor.blocks.6.attn.attn_drop       | Dropout               | 0     
+96  | model.feature_extractor.blocks.6.attn.proj            | Linear                | 1.0 M 
+97  | model.feature_extractor.blocks.6.attn.proj_drop       | Dropout               | 0     
+98  | model.feature_extractor.blocks.6.drop_path            | Identity              | 0     
+99  | model.feature_extractor.blocks.6.norm2                | LayerNorm             | 2.0 K 
+100 | model.feature_extractor.blocks.6.mlp                  | Mlp                   | 8.4 M 
+101 | model.feature_extractor.blocks.6.mlp.fc1              | Linear                | 4.2 M 
+102 | model.feature_extractor.blocks.6.mlp.act              | GELU                  | 0     
+103 | model.feature_extractor.blocks.6.mlp.fc2              | Linear                | 4.2 M 
+104 | model.feature_extractor.blocks.6.mlp.drop             | Dropout               | 0     
+105 | model.feature_extractor.blocks.7                      | Block                 | 12.6 M
+106 | model.feature_extractor.blocks.7.norm1                | LayerNorm             | 2.0 K 
+107 | model.feature_extractor.blocks.7.attn                 | Attention             | 4.2 M 
+108 | model.feature_extractor.blocks.7.attn.qkv             | Linear                | 3.1 M 
+109 | model.feature_extractor.blocks.7.attn.attn_drop       | Dropout               | 0     
+110 | model.feature_extractor.blocks.7.attn.proj            | Linear                | 1.0 M 
+111 | model.feature_extractor.blocks.7.attn.proj_drop       | Dropout               | 0     
+112 | model.feature_extractor.blocks.7.drop_path            | Identity              | 0     
+113 | model.feature_extractor.blocks.7.norm2                | LayerNorm             | 2.0 K 
+114 | model.feature_extractor.blocks.7.mlp                  | Mlp                   | 8.4 M 
+115 | model.feature_extractor.blocks.7.mlp.fc1              | Linear                | 4.2 M 
+116 | model.feature_extractor.blocks.7.mlp.act              | GELU                  | 0     
+117 | model.feature_extractor.blocks.7.mlp.fc2              | Linear                | 4.2 M 
+118 | model.feature_extractor.blocks.7.mlp.drop             | Dropout               | 0     
+119 | model.feature_extractor.blocks.8                      | Block                 | 12.6 M
+120 | model.feature_extractor.blocks.8.norm1                | LayerNorm             | 2.0 K 
+121 | model.feature_extractor.blocks.8.attn                 | Attention             | 4.2 M 
+122 | model.feature_extractor.blocks.8.attn.qkv             | Linear                | 3.1 M 
+123 | model.feature_extractor.blocks.8.attn.attn_drop       | Dropout               | 0     
+124 | model.feature_extractor.blocks.8.attn.proj            | Linear                | 1.0 M 
+125 | model.feature_extractor.blocks.8.attn.proj_drop       | Dropout               | 0     
+126 | model.feature_extractor.blocks.8.drop_path            | Identity              | 0     
+127 | model.feature_extractor.blocks.8.norm2                | LayerNorm             | 2.0 K 
+128 | model.feature_extractor.blocks.8.mlp                  | Mlp                   | 8.4 M 
+129 | model.feature_extractor.blocks.8.mlp.fc1              | Linear                | 4.2 M 
+130 | model.feature_extractor.blocks.8.mlp.act              | GELU                  | 0     
+131 | model.feature_extractor.blocks.8.mlp.fc2              | Linear                | 4.2 M 
+132 | model.feature_extractor.blocks.8.mlp.drop             | Dropout               | 0     
+133 | model.feature_extractor.blocks.9                      | Block                 | 12.6 M
+134 | model.feature_extractor.blocks.9.norm1                | LayerNorm             | 2.0 K 
+135 | model.feature_extractor.blocks.9.attn                 | Attention             | 4.2 M 
+136 | model.feature_extractor.blocks.9.attn.qkv             | Linear                | 3.1 M 
+137 | model.feature_extractor.blocks.9.attn.attn_drop       | Dropout               | 0     
+138 | model.feature_extractor.blocks.9.attn.proj            | Linear                | 1.0 M 
+139 | model.feature_extractor.blocks.9.attn.proj_drop       | Dropout               | 0     
+140 | model.feature_extractor.blocks.9.drop_path            | Identity              | 0     
+141 | model.feature_extractor.blocks.9.norm2                | LayerNorm             | 2.0 K 
+142 | model.feature_extractor.blocks.9.mlp                  | Mlp                   | 8.4 M 
+143 | model.feature_extractor.blocks.9.mlp.fc1              | Linear                | 4.2 M 
+144 | model.feature_extractor.blocks.9.mlp.act              | GELU                  | 0     
+145 | model.feature_extractor.blocks.9.mlp.fc2              | Linear                | 4.2 M 
+146 | model.feature_extractor.blocks.9.mlp.drop             | Dropout               | 0     
+147 | model.feature_extractor.blocks.10                     | Block                 | 12.6 M
+148 | model.feature_extractor.blocks.10.norm1               | LayerNorm             | 2.0 K 
+149 | model.feature_extractor.blocks.10.attn                | Attention             | 4.2 M 
+150 | model.feature_extractor.blocks.10.attn.qkv            | Linear                | 3.1 M 
+151 | model.feature_extractor.blocks.10.attn.attn_drop      | Dropout               | 0     
+152 | model.feature_extractor.blocks.10.attn.proj           | Linear                | 1.0 M 
+153 | model.feature_extractor.blocks.10.attn.proj_drop      | Dropout               | 0     
+154 | model.feature_extractor.blocks.10.drop_path           | Identity              | 0     
+155 | model.feature_extractor.blocks.10.norm2               | LayerNorm             | 2.0 K 
+156 | model.feature_extractor.blocks.10.mlp                 | Mlp                   | 8.4 M 
+157 | model.feature_extractor.blocks.10.mlp.fc1             | Linear                | 4.2 M 
+158 | model.feature_extractor.blocks.10.mlp.act             | GELU                  | 0     
+159 | model.feature_extractor.blocks.10.mlp.fc2             | Linear                | 4.2 M 
+160 | model.feature_extractor.blocks.10.mlp.drop            | Dropout               | 0     
+161 | model.feature_extractor.blocks.11                     | Block                 | 12.6 M
+162 | model.feature_extractor.blocks.11.norm1               | LayerNorm             | 2.0 K 
+163 | model.feature_extractor.blocks.11.attn                | Attention             | 4.2 M 
+164 | model.feature_extractor.blocks.11.attn.qkv            | Linear                | 3.1 M 
+165 | model.feature_extractor.blocks.11.attn.attn_drop      | Dropout               | 0     
+166 | model.feature_extractor.blocks.11.attn.proj           | Linear                | 1.0 M 
+167 | model.feature_extractor.blocks.11.attn.proj_drop      | Dropout               | 0     
+168 | model.feature_extractor.blocks.11.drop_path           | Identity              | 0     
+169 | model.feature_extractor.blocks.11.norm2               | LayerNorm             | 2.0 K 
+170 | model.feature_extractor.blocks.11.mlp                 | Mlp                   | 8.4 M 
+171 | model.feature_extractor.blocks.11.mlp.fc1             | Linear                | 4.2 M 
+172 | model.feature_extractor.blocks.11.mlp.act             | GELU                  | 0     
+173 | model.feature_extractor.blocks.11.mlp.fc2             | Linear                | 4.2 M 
+174 | model.feature_extractor.blocks.11.mlp.drop            | Dropout               | 0     
+175 | model.feature_extractor.blocks.12                     | Block                 | 12.6 M
+176 | model.feature_extractor.blocks.12.norm1               | LayerNorm             | 2.0 K 
+177 | model.feature_extractor.blocks.12.attn                | Attention             | 4.2 M 
+178 | model.feature_extractor.blocks.12.attn.qkv            | Linear                | 3.1 M 
+179 | model.feature_extractor.blocks.12.attn.attn_drop      | Dropout               | 0     
+180 | model.feature_extractor.blocks.12.attn.proj           | Linear                | 1.0 M 
+181 | model.feature_extractor.blocks.12.attn.proj_drop      | Dropout               | 0     
+182 | model.feature_extractor.blocks.12.drop_path           | Identity              | 0     
+183 | model.feature_extractor.blocks.12.norm2               | LayerNorm             | 2.0 K 
+184 | model.feature_extractor.blocks.12.mlp                 | Mlp                   | 8.4 M 
+185 | model.feature_extractor.blocks.12.mlp.fc1             | Linear                | 4.2 M 
+186 | model.feature_extractor.blocks.12.mlp.act             | GELU                  | 0     
+187 | model.feature_extractor.blocks.12.mlp.fc2             | Linear                | 4.2 M 
+188 | model.feature_extractor.blocks.12.mlp.drop            | Dropout               | 0     
+189 | model.feature_extractor.blocks.13                     | Block                 | 12.6 M
+190 | model.feature_extractor.blocks.13.norm1               | LayerNorm             | 2.0 K 
+191 | model.feature_extractor.blocks.13.attn                | Attention             | 4.2 M 
+192 | model.feature_extractor.blocks.13.attn.qkv            | Linear                | 3.1 M 
+193 | model.feature_extractor.blocks.13.attn.attn_drop      | Dropout               | 0     
+194 | model.feature_extractor.blocks.13.attn.proj           | Linear                | 1.0 M 
+195 | model.feature_extractor.blocks.13.attn.proj_drop      | Dropout               | 0     
+196 | model.feature_extractor.blocks.13.drop_path           | Identity              | 0     
+197 | model.feature_extractor.blocks.13.norm2               | LayerNorm             | 2.0 K 
+198 | model.feature_extractor.blocks.13.mlp                 | Mlp                   | 8.4 M 
+199 | model.feature_extractor.blocks.13.mlp.fc1             | Linear                | 4.2 M 
+200 | model.feature_extractor.blocks.13.mlp.act             | GELU                  | 0     
+201 | model.feature_extractor.blocks.13.mlp.fc2             | Linear                | 4.2 M 
+202 | model.feature_extractor.blocks.13.mlp.drop            | Dropout               | 0     
+203 | model.feature_extractor.blocks.14                     | Block                 | 12.6 M
+204 | model.feature_extractor.blocks.14.norm1               | LayerNorm             | 2.0 K 
+205 | model.feature_extractor.blocks.14.attn                | Attention             | 4.2 M 
+206 | model.feature_extractor.blocks.14.attn.qkv            | Linear                | 3.1 M 
+207 | model.feature_extractor.blocks.14.attn.attn_drop      | Dropout               | 0     
+208 | model.feature_extractor.blocks.14.attn.proj           | Linear                | 1.0 M 
+209 | model.feature_extractor.blocks.14.attn.proj_drop      | Dropout               | 0     
+210 | model.feature_extractor.blocks.14.drop_path           | Identity              | 0     
+211 | model.feature_extractor.blocks.14.norm2               | LayerNorm             | 2.0 K 
+212 | model.feature_extractor.blocks.14.mlp                 | Mlp                   | 8.4 M 
+213 | model.feature_extractor.blocks.14.mlp.fc1             | Linear                | 4.2 M 
+214 | model.feature_extractor.blocks.14.mlp.act             | GELU                  | 0     
+215 | model.feature_extractor.blocks.14.mlp.fc2             | Linear                | 4.2 M 
+216 | model.feature_extractor.blocks.14.mlp.drop            | Dropout               | 0     
+217 | model.feature_extractor.blocks.15                     | Block                 | 12.6 M
+218 | model.feature_extractor.blocks.15.norm1               | LayerNorm             | 2.0 K 
+219 | model.feature_extractor.blocks.15.attn                | Attention             | 4.2 M 
+220 | model.feature_extractor.blocks.15.attn.qkv            | Linear                | 3.1 M 
+221 | model.feature_extractor.blocks.15.attn.attn_drop      | Dropout               | 0     
+222 | model.feature_extractor.blocks.15.attn.proj           | Linear                | 1.0 M 
+223 | model.feature_extractor.blocks.15.attn.proj_drop      | Dropout               | 0     
+224 | model.feature_extractor.blocks.15.drop_path           | Identity              | 0     
+225 | model.feature_extractor.blocks.15.norm2               | LayerNorm             | 2.0 K 
+226 | model.feature_extractor.blocks.15.mlp                 | Mlp                   | 8.4 M 
+227 | model.feature_extractor.blocks.15.mlp.fc1             | Linear                | 4.2 M 
+228 | model.feature_extractor.blocks.15.mlp.act             | GELU                  | 0     
+229 | model.feature_extractor.blocks.15.mlp.fc2             | Linear                | 4.2 M 
+230 | model.feature_extractor.blocks.15.mlp.drop            | Dropout               | 0     
+231 | model.feature_extractor.blocks.16                     | Block                 | 12.6 M
+232 | model.feature_extractor.blocks.16.norm1               | LayerNorm             | 2.0 K 
+233 | model.feature_extractor.blocks.16.attn                | Attention             | 4.2 M 
+234 | model.feature_extractor.blocks.16.attn.qkv            | Linear                | 3.1 M 
+235 | model.feature_extractor.blocks.16.attn.attn_drop      | Dropout               | 0     
+236 | model.feature_extractor.blocks.16.attn.proj           | Linear                | 1.0 M 
+237 | model.feature_extractor.blocks.16.attn.proj_drop      | Dropout               | 0     
+238 | model.feature_extractor.blocks.16.drop_path           | Identity              | 0     
+239 | model.feature_extractor.blocks.16.norm2               | LayerNorm             | 2.0 K 
+240 | model.feature_extractor.blocks.16.mlp                 | Mlp                   | 8.4 M 
+241 | model.feature_extractor.blocks.16.mlp.fc1             | Linear                | 4.2 M 
+242 | model.feature_extractor.blocks.16.mlp.act             | GELU                  | 0     
+243 | model.feature_extractor.blocks.16.mlp.fc2             | Linear                | 4.2 M 
+244 | model.feature_extractor.blocks.16.mlp.drop            | Dropout               | 0     
+245 | model.feature_extractor.blocks.17                     | Block                 | 12.6 M
+246 | model.feature_extractor.blocks.17.norm1               | LayerNorm             | 2.0 K 
+247 | model.feature_extractor.blocks.17.attn                | Attention             | 4.2 M 
+248 | model.feature_extractor.blocks.17.attn.qkv            | Linear                | 3.1 M 
+249 | model.feature_extractor.blocks.17.attn.attn_drop      | Dropout               | 0     
+250 | model.feature_extractor.blocks.17.attn.proj           | Linear                | 1.0 M 
+251 | model.feature_extractor.blocks.17.attn.proj_drop      | Dropout               | 0     
+252 | model.feature_extractor.blocks.17.drop_path           | Identity              | 0     
+253 | model.feature_extractor.blocks.17.norm2               | LayerNorm             | 2.0 K 
+254 | model.feature_extractor.blocks.17.mlp                 | Mlp                   | 8.4 M 
+255 | model.feature_extractor.blocks.17.mlp.fc1             | Linear                | 4.2 M 
+256 | model.feature_extractor.blocks.17.mlp.act             | GELU                  | 0     
+257 | model.feature_extractor.blocks.17.mlp.fc2             | Linear                | 4.2 M 
+258 | model.feature_extractor.blocks.17.mlp.drop            | Dropout               | 0     
+259 | model.feature_extractor.blocks.18                     | Block                 | 12.6 M
+260 | model.feature_extractor.blocks.18.norm1               | LayerNorm             | 2.0 K 
+261 | model.feature_extractor.blocks.18.attn                | Attention             | 4.2 M 
+262 | model.feature_extractor.blocks.18.attn.qkv            | Linear                | 3.1 M 
+263 | model.feature_extractor.blocks.18.attn.attn_drop      | Dropout               | 0     
+264 | model.feature_extractor.blocks.18.attn.proj           | Linear                | 1.0 M 
+265 | model.feature_extractor.blocks.18.attn.proj_drop      | Dropout               | 0     
+266 | model.feature_extractor.blocks.18.drop_path           | Identity              | 0     
+267 | model.feature_extractor.blocks.18.norm2               | LayerNorm             | 2.0 K 
+268 | model.feature_extractor.blocks.18.mlp                 | Mlp                   | 8.4 M 
+269 | model.feature_extractor.blocks.18.mlp.fc1             | Linear                | 4.2 M 
+270 | model.feature_extractor.blocks.18.mlp.act             | GELU                  | 0     
+271 | model.feature_extractor.blocks.18.mlp.fc2             | Linear                | 4.2 M 
+272 | model.feature_extractor.blocks.18.mlp.drop            | Dropout               | 0     
+273 | model.feature_extractor.blocks.19                     | Block                 | 12.6 M
+274 | model.feature_extractor.blocks.19.norm1               | LayerNorm             | 2.0 K 
+275 | model.feature_extractor.blocks.19.attn                | Attention             | 4.2 M 
+276 | model.feature_extractor.blocks.19.attn.qkv            | Linear                | 3.1 M 
+277 | model.feature_extractor.blocks.19.attn.attn_drop      | Dropout               | 0     
+278 | model.feature_extractor.blocks.19.attn.proj           | Linear                | 1.0 M 
+279 | model.feature_extractor.blocks.19.attn.proj_drop      | Dropout               | 0     
+280 | model.feature_extractor.blocks.19.drop_path           | Identity              | 0     
+281 | model.feature_extractor.blocks.19.norm2               | LayerNorm             | 2.0 K 
+282 | model.feature_extractor.blocks.19.mlp                 | Mlp                   | 8.4 M 
+283 | model.feature_extractor.blocks.19.mlp.fc1             | Linear                | 4.2 M 
+284 | model.feature_extractor.blocks.19.mlp.act             | GELU                  | 0     
+285 | model.feature_extractor.blocks.19.mlp.fc2             | Linear                | 4.2 M 
+286 | model.feature_extractor.blocks.19.mlp.drop            | Dropout               | 0     
+287 | model.feature_extractor.blocks.20                     | Block                 | 12.6 M
+288 | model.feature_extractor.blocks.20.norm1               | LayerNorm             | 2.0 K 
+289 | model.feature_extractor.blocks.20.attn                | Attention             | 4.2 M 
+290 | model.feature_extractor.blocks.20.attn.qkv            | Linear                | 3.1 M 
+291 | model.feature_extractor.blocks.20.attn.attn_drop      | Dropout               | 0     
+292 | model.feature_extractor.blocks.20.attn.proj           | Linear                | 1.0 M 
+293 | model.feature_extractor.blocks.20.attn.proj_drop      | Dropout               | 0     
+294 | model.feature_extractor.blocks.20.drop_path           | Identity              | 0     
+295 | model.feature_extractor.blocks.20.norm2               | LayerNorm             | 2.0 K 
+296 | model.feature_extractor.blocks.20.mlp                 | Mlp                   | 8.4 M 
+297 | model.feature_extractor.blocks.20.mlp.fc1             | Linear                | 4.2 M 
+298 | model.feature_extractor.blocks.20.mlp.act             | GELU                  | 0     
+299 | model.feature_extractor.blocks.20.mlp.fc2             | Linear                | 4.2 M 
+300 | model.feature_extractor.blocks.20.mlp.drop            | Dropout               | 0     
+301 | model.feature_extractor.blocks.21                     | Block                 | 12.6 M
+302 | model.feature_extractor.blocks.21.norm1               | LayerNorm             | 2.0 K 
+303 | model.feature_extractor.blocks.21.attn                | Attention             | 4.2 M 
+304 | model.feature_extractor.blocks.21.attn.qkv            | Linear                | 3.1 M 
+305 | model.feature_extractor.blocks.21.attn.attn_drop      | Dropout               | 0     
+306 | model.feature_extractor.blocks.21.attn.proj           | Linear                | 1.0 M 
+307 | model.feature_extractor.blocks.21.attn.proj_drop      | Dropout               | 0     
+308 | model.feature_extractor.blocks.21.drop_path           | Identity              | 0     
+309 | model.feature_extractor.blocks.21.norm2               | LayerNorm             | 2.0 K 
+310 | model.feature_extractor.blocks.21.mlp                 | Mlp                   | 8.4 M 
+311 | model.feature_extractor.blocks.21.mlp.fc1             | Linear                | 4.2 M 
+312 | model.feature_extractor.blocks.21.mlp.act             | GELU                  | 0     
+313 | model.feature_extractor.blocks.21.mlp.fc2             | Linear                | 4.2 M 
+314 | model.feature_extractor.blocks.21.mlp.drop            | Dropout               | 0     
+315 | model.feature_extractor.blocks.22                     | Block                 | 12.6 M
+316 | model.feature_extractor.blocks.22.norm1               | LayerNorm             | 2.0 K 
+317 | model.feature_extractor.blocks.22.attn                | Attention             | 4.2 M 
+318 | model.feature_extractor.blocks.22.attn.qkv            | Linear                | 3.1 M 
+319 | model.feature_extractor.blocks.22.attn.attn_drop      | Dropout               | 0     
+320 | model.feature_extractor.blocks.22.attn.proj           | Linear                | 1.0 M 
+321 | model.feature_extractor.blocks.22.attn.proj_drop      | Dropout               | 0     
+322 | model.feature_extractor.blocks.22.drop_path           | Identity              | 0     
+323 | model.feature_extractor.blocks.22.norm2               | LayerNorm             | 2.0 K 
+324 | model.feature_extractor.blocks.22.mlp                 | Mlp                   | 8.4 M 
+325 | model.feature_extractor.blocks.22.mlp.fc1             | Linear                | 4.2 M 
+326 | model.feature_extractor.blocks.22.mlp.act             | GELU                  | 0     
+327 | model.feature_extractor.blocks.22.mlp.fc2             | Linear                | 4.2 M 
+328 | model.feature_extractor.blocks.22.mlp.drop            | Dropout               | 0     
+329 | model.feature_extractor.blocks.23                     | Block                 | 12.6 M
+330 | model.feature_extractor.blocks.23.norm1               | LayerNorm             | 2.0 K 
+331 | model.feature_extractor.blocks.23.attn                | Attention             | 4.2 M 
+332 | model.feature_extractor.blocks.23.attn.qkv            | Linear                | 3.1 M 
+333 | model.feature_extractor.blocks.23.attn.attn_drop      | Dropout               | 0     
+334 | model.feature_extractor.blocks.23.attn.proj           | Linear                | 1.0 M 
+335 | model.feature_extractor.blocks.23.attn.proj_drop      | Dropout               | 0     
+336 | model.feature_extractor.blocks.23.drop_path           | Identity              | 0     
+337 | model.feature_extractor.blocks.23.norm2               | LayerNorm             | 2.0 K 
+338 | model.feature_extractor.blocks.23.mlp                 | Mlp                   | 8.4 M 
+339 | model.feature_extractor.blocks.23.mlp.fc1             | Linear                | 4.2 M 
+340 | model.feature_extractor.blocks.23.mlp.act             | GELU                  | 0     
+341 | model.feature_extractor.blocks.23.mlp.fc2             | Linear                | 4.2 M 
+342 | model.feature_extractor.blocks.23.mlp.drop            | Dropout               | 0     
+343 | model.feature_extractor.norm                          | LayerNorm             | 2.0 K 
+344 | model.feature_extractor.pre_logits                    | Identity              | 0     
+345 | model.classifier                                      | ConceptTransformerVIT | 6.8 M 
+346 | model.classifier.concept_tranformer                   | CrossAttention        | 3.4 M 
+347 | model.classifier.concept_tranformer.q                 | Linear                | 1.0 M 
+348 | model.classifier.concept_tranformer.kv                | Linear                | 2.1 M 
+349 | model.classifier.concept_tranformer.attn_drop         | Dropout               | 0     
+350 | model.classifier.concept_tranformer.proj              | Linear                | 205 K 
+351 | model.classifier.concept_tranformer.proj_drop         | Dropout               | 0     
+352 | model.classifier.spatial_concept_tranformer           | CrossAttention        | 3.4 M 
+353 | model.classifier.spatial_concept_tranformer.q         | Linear                | 1.0 M 
+354 | model.classifier.spatial_concept_tranformer.kv        | Linear                | 2.1 M 
+355 | model.classifier.spatial_concept_tranformer.attn_drop | Dropout               | 0     
+356 | model.classifier.spatial_concept_tranformer.proj      | Linear                | 205 K 
+357 | model.classifier.spatial_concept_tranformer.proj_drop | Dropout               | 0     
+--------------------------------------------------------------------------------------------------
+310 M     Trainable params
+0         Non-trainable params
+310 M     Total params
+1,240.455 Total estimated model params size (MB)
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:224: PossibleUserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 128 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:224: PossibleUserWarning: The dataloader, val_dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 128 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+Training: 0it [00:00, ?it/s]Training:   0%|          | 0/2 [00:00<?, ?it/s]Epoch 0:   0%|          | 0/2 [00:00<?, ?it/s] 
+Validation: 0it [00:00, ?it/s][A
+Validation:   0%|          | 0/1 [00:00<?, ?it/s][A
+Validation DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s][A
+Validation DataLoader 0: 100%|██████████| 1/1 [00:01<00:00,  1.97s/it][AEpoch 0: 100%|██████████| 2/2 [00:10<00:00,  5.07s/it]Epoch 0: 100%|██████████| 2/2 [00:10<00:00,  5.07s/it, loss=6.19, v_num=]
+                                                                      [AEpoch 0: 100%|██████████| 2/2 [00:10<00:00,  5.07s/it, loss=6.19, v_num=]`Trainer.fit` stopped: `max_steps=1` reached.
+Epoch 0: 100%|██████████| 2/2 [00:10<00:00,  5.07s/it, loss=6.19, v_num=]
+Traceback (most recent call last):
+  File "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/concept_transformer/cvit_cub.py", line 51, in <module>
+    test_results = trainer.test(model=model, ckpt_path=None) if args.debug else trainer.test()
+  File "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/trainer.py", line 794, in test
+    return call._call_and_handle_interrupt(
+  File "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/call.py", line 38, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/trainer.py", line 833, in _test_impl
+    self._data_connector.attach_data(model, test_dataloaders=dataloaders, datamodule=datamodule)
+  File "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/connectors/data_connector.py", line 143, in attach_data
+    _check_dataloader_none(test_dataloaders, self._test_dataloader_source, self.trainer.state.fn)
+  File "/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/connectors/data_connector.py", line 598, in _check_dataloader_none
+    raise ValueError(
+ValueError: An invalid dataloader was passed to `Trainer.test(dataloaders=...)`. Either pass the dataloader to the `.test()` method OR implement `def test_dataloader(self):` in your LightningModule/LightningDataModule.

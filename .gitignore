@@ -23,3 +23,11 @@ CUB-200-2011/
 *.tgz
 *.tar.gz
 training_runs/**/logs/
+
+!setup_logs/cub-download.json
+!setup_logs/cub-download.log
+!setup_logs/slurm-preflight.json
+!setup_logs/slurm-submission.json
+!setup_logs/timing-callback-check.json
+!setup_logs/slurm-submission-*.json
+!setup_logs/training-eta.json

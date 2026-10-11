@@ -1,0 +1,11 @@
+{
+  "upstream_commit": "84c9c30108a6249e017d580c4120ea54af0064f7",
+  "file": "ctc/ctc.py",
+  "upstream_url": "https://raw.githubusercontent.com/IBM/concept_transformer/84c9c30108a6249e017d580c4120ea54af0064f7/ctc/ctc.py",
+  "local_sha256": "65305b1d75c1303274ade04c311c63a43c81478b4d27e0092b76bec738e5aa37",
+  "upstream_sha256": "65305b1d75c1303274ade04c311c63a43c81478b4d27e0092b76bec738e5aa37",
+  "upstream_byte_match": true,
+  "reproduction": "spatial_concepts_cost(torch.full((batch,196,95),1/95), torch.ones(batch,196,95))",
+  "batch_1": "IndexError: mask [196] does not match indexed tensor [1,196,95]",
+  "batch_2_loss": 0.0
+}

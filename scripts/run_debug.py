@@ -34,11 +34,16 @@ record = {
     'torch_home': env['TORCH_HOME'],
     'log_file': str(RUN_DIR / 'run.log'),
     'repository_commit': json.loads((PROJECT_DIR / 'upstream.json').read_text())['commit'],
-    'mode': 'repository --debug (fast_dev_run), with debug-only in-memory test fix',
+    'mode': 'repository --debug (fast_dev_run), Lightning 1.9 CPU trainer and in-memory testing',
     'batch_size': 2,
-    'debug_test_fix': 'trainer.test(model=model, ckpt_path=None) if args.debug else trainer.test()',
+    'hostname': __import__('platform').node(),
+    'platform': __import__('platform').platform(),
+    'python': __import__('platform').python_version(),
+    'debug_test_fix': 'Explicit model and datamodule; ckpt_path=None in debug, best in normal training',
     'entrypoint_sha256': hashlib.sha256((PROJECT_DIR / 'concept_transformer/cvit_cub.py').read_bytes()).hexdigest(),
     'num_workers': 0,
+    'runtime_sha256': hashlib.sha256((PROJECT_DIR / 'concept_transformer/ctc/ctc_model.py').read_bytes()).hexdigest(),
+    'lock_sha256': hashlib.sha256((PROJECT_DIR / 'uv.lock').read_bytes()).hexdigest(),
 }
 print('Starting repository CLI debug run; output: training_runs/debug/run.log', flush=True)
 start = perf_counter()
@@ -56,7 +61,14 @@ if returncode == 0:
                       (RUN_DIR / 'run.log').read_text(), flags=re.DOTALL)
     if match:
         record['test_metrics'] = ast.literal_eval(match.group(1))
-(RUN_DIR / 'code.diff').write_text((PROJECT_DIR / 'patches/debug-test-no-checkpoint.patch').read_text())
+    else:
+        log_text = (RUN_DIR / 'run.log').read_text()
+        record['test_metrics'] = {}
+        for name in ['test_acc', 'test_ce_loss', 'test_expl_loss', 'test_l1_loss']:
+            metric = re.search(r'^\s*' + name + r'\s+([-+0-9.eE]+)\s*$', log_text, flags=re.MULTILINE)
+            if metric:
+                record['test_metrics'][name] = float(metric.group(1))
+(RUN_DIR / 'code.diff').write_text(''.join(path.read_text() for path in sorted((PROJECT_DIR / 'patches').glob('*.patch'))))
 (RUN_DIR / 'run.json').write_text(json.dumps(record, indent=2) + '\n')
 print(f'Debug run exit code: {returncode}; elapsed: {record["elapsed_seconds"]:.1f} seconds', flush=True)
 sys.exit(returncode)

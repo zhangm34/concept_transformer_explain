@@ -3,15 +3,15 @@ name = "concept-transformer-assessment"
 version = "0.1.0"
 description = "Step-by-step reproduction of the IBM Concept Transformer assessment"
 requires-python = "==3.8.*"
-# Model dependencies match the upstream requirements.txt.
+# Scientific/model dependencies retain upstream pins; the GPU runtime is updated for L4.
 # The README pins NumPy 1.20.3; requirements.txt pins 1.22.0, which we use.
 # Upstream leaves epyc unpinned; we select 1.7.2 for reproducibility.
 dependencies = [
-    "torch==1.10.0",
-    "torchvision==0.11.1",
-    "pytorch-lightning==1.4.8",
-    "lightning-bolts==0.3.4",
-    "torchmetrics==0.5.0",
+    "torch==2.0.1+cu118",
+    "torchvision==0.15.2+cu118",
+    "pytorch-lightning==1.9.5",
+    "lightning-bolts==0.7.0",
+    "torchmetrics==0.11.4",
     "scipy==1.7.1",
     "numpy==1.22.0",
     "pandas==1.3.3",
@@ -38,3 +38,14 @@ dependencies = [
 
 [tool.uv]
 package = false
+environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'"]
+
+# Install the matched CUDA runtime wheels, also usable on CPU-only nodes.
+[[tool.uv.index]]
+name = "pytorch-cu118"
+url = "https://download.pytorch.org/whl/cu118"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu118" }
+torchvision = { index = "pytorch-cu118" }

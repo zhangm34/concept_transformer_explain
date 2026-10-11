@@ -1,11 +1,26 @@
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/pl_bolts/models/self_supervised/amdim/amdim_module.py:34: UnderReviewWarning: The feature generate_power_seq is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  "lr_options": generate_power_seq(LEARNING_RATE_CIFAR, 11),
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/pl_bolts/models/self_supervised/amdim/amdim_module.py:92: UnderReviewWarning: The feature FeatureMapContrastiveTask is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  contrastive_task: Union[FeatureMapContrastiveTask] = FeatureMapContrastiveTask("01, 02, 11"),
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/pl_bolts/losses/self_supervised_learning.py:228: UnderReviewWarning: The feature AmdimNCELoss is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  self.nce_loss = AmdimNCELoss(tclip)
 
-* RUN EXPERIMENT Namespace(attention_sparsity=0.5, baseline=False, batch_size=2, ctc_model='cub_cvit', data_dir='/Users/mengyuanz/Documents/projects/concept_transformer_explain/CUB-200-2011/CUB_200_2011', data_name='CUB2011Parts', debug=True, disable_lr_scheduler=False, expl_lambda=1.0, finetune_unfreeze_epoch=0, learning_rate=5e-05, max_epochs=50, num_workers=0, seed=42, warmup=10, weight_decay=0.001)
+* RUN EXPERIMENT Namespace(attention_sparsity=0.5, baseline=False, batch_size=2, ctc_model='cub_cvit', data_dir='/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/CUB-200-2011/CUB_200_2011', data_name='CUB2011Parts', debug=True, disable_lr_scheduler=False, expl_lambda=1.0, finetune_unfreeze_epoch=0, learning_rate=5e-05, max_epochs=50, num_workers=0, seed=42, warmup=10, weight_decay=0.001)
 
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/torch/cuda/__init__.py:546: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/lightning_fabric/plugins/environments/slurm.py:165: PossibleUserWarning: The `srun` command is available on your system but is not used. HINT: If your intention is to run Lightning on SLURM, prepend your python command with `srun` like so: srun python /orange/yonghui.wu/zhangm3/2026/concept_transformer_ ...
+  rank_zero_warn(
 GPU available: False, used: False
 TPU available: False, using: 0 TPU cores
 IPU available: False, using: 0 IPUs
-Running in fast_dev_run mode: will run a full train, val, test and prediction loop using 1 batch(es).
+HPU available: False, using: 0 HPUs
+Running in `fast_dev_run` mode: will run the requested loop using 1 batch(es). Logging and checkpointing is suppressed.
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/lightning_fabric/plugins/environments/slurm.py:165: PossibleUserWarning: The `srun` command is available on your system but is not used. HINT: If your intention is to run Lightning on SLURM, prepend your python command with `srun` like so: srun python /orange/yonghui.wu/zhangm3/2026/concept_transformer_ ...
+  rank_zero_warn(
 Files already downloaded and verified
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/concept_transformer/ctc/ctc_model.py:182: UnderReviewWarning: The feature LinearWarmupCosineAnnealingLR is currently marked under review. The compatibility with other Lightning projects is not guaranteed and API may change at any time. The API and functionality may change without warning in future releases. More details: https://lightning-bolts.readthedocs.io/en/latest/stability.html
+  scheduler = LinearWarmupCosineAnnealingLR(
 
     | Name                                                  | Type                  | Params
 --------------------------------------------------------------------------------------------------
@@ -372,22 +387,26 @@ Files already downloaded and verified
 0         Non-trainable params
 310 M     Total params
 1,240.455 Total estimated model params size (MB)
-/Users/mengyuanz/Documents/projects/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/data_loading.py:105: UserWarning: The dataloader, train dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 8 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:224: PossibleUserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 128 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
   rank_zero_warn(
-/Users/mengyuanz/Documents/projects/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/data_loading.py:105: UserWarning: The dataloader, val dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 8 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:224: PossibleUserWarning: The dataloader, val_dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 128 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
   rank_zero_warn(
-Training: -1it [00:00, ?it/s]Training:   0%|          | 0/2 [00:00<00:00, 61680.94it/s]Epoch 0:   0%|          | 0/2 [00:00<00:00, 4993.22it/s]  Epoch 0: 100%|██████████| 2/2 [00:21<00:00,  7.09s/it]  
-Validating: 0it [00:00, ?it/s][A
-Validating:   0%|          | 0/1 [00:00<?, ?it/s][A
-Validating: 100%|██████████| 1/1 [00:06<00:00,  6.28s/it][AEpoch 0: 100%|██████████| 2/2 [00:27<00:00,  9.18s/it, loss=6.21, v_num=]
-                                                         [AEpoch 0: 100%|██████████| 2/2 [00:27<00:00,  9.18s/it, loss=6.21, v_num=]
-/Users/mengyuanz/Documents/projects/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/data_loading.py:105: UserWarning: The dataloader, test dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 8 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+Training: 0it [00:00, ?it/s]Training:   0%|          | 0/2 [00:00<?, ?it/s]Epoch 0:   0%|          | 0/2 [00:00<?, ?it/s] 
+Validation: 0it [00:00, ?it/s][A
+Validation:   0%|          | 0/1 [00:00<?, ?it/s][A
+Validation DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s][A
+Validation DataLoader 0: 100%|██████████| 1/1 [00:01<00:00,  1.99s/it][AEpoch 0: 100%|██████████| 2/2 [00:10<00:00,  5.33s/it]Epoch 0: 100%|██████████| 2/2 [00:10<00:00,  5.33s/it, loss=6.19, v_num=]
+                                                                      [AEpoch 0: 100%|██████████| 2/2 [00:10<00:00,  5.33s/it, loss=6.19, v_num=]`Trainer.fit` stopped: `max_steps=1` reached.
+Epoch 0: 100%|██████████| 2/2 [00:10<00:00,  5.33s/it, loss=6.19, v_num=]
+Files already downloaded and verified
+/orange/yonghui.wu/zhangm3/2026/concept_transformer_explain/.venv/lib/python3.8/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:224: PossibleUserWarning: The dataloader, test_dataloader 0, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 128 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
   rank_zero_warn(
-Testing: 0it [00:00, ?it/s]Testing: 100%|██████████| 1/1 [00:06<00:00,  6.18s/it]--------------------------------------------------------------------------------
-DATALOADER:0 TEST RESULTS
-{'test_acc': 0.0,
- 'test_ce_loss': 5.283625602722168,
- 'test_expl_loss': 1.3522526025772095,
- 'test_l1_loss': 0.24522434175014496}
---------------------------------------------------------------------------------
-Testing: 100%|██████████| 1/1 [00:06<00:00,  6.18s/it]
+Testing: 0it [00:00, ?it/s]Testing:   0%|          | 0/1 [00:00<?, ?it/s]Testing DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s]Testing DataLoader 0: 100%|██████████| 1/1 [00:02<00:00,  2.36s/it]Testing DataLoader 0: 100%|██████████| 1/1 [00:02<00:00,  2.36s/it]
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+       Test metric             DataLoader 0
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+        test_acc                    0.0
+      test_ce_loss           5.283625602722168
+     test_expl_loss         1.3522526025772095
+      test_l1_loss          0.24522434175014496
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────

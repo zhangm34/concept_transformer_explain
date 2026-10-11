@@ -1,0 +1,11 @@
+{
+  "captured_at_utc": "2026-10-10T02:09:21.108119+00:00",
+  "job_id": "45387524",
+  "source_run": "/blue/yonghui.wu/zhangm3/concept_transformer_explain/training_runs/l4-45387524",
+  "run_status": "training",
+  "last_training_record_utc": "2026-10-10T02:09:20.750080+00:00",
+  "train_batches": 3331,
+  "metrics_source": "TensorBoard scalar events; no smoothing or synthetic data",
+  "batch_source": "run_training.py timing callback",
+  "complete_epochs": 17
+}

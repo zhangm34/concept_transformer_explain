@@ -1,0 +1,13 @@
+{
+  "checked_at_utc": "2026-10-10T01:27:47.723658+00:00",
+  "runner_sha256": "196bc63f1c1809ebc437aa46253ecf8a48fc27da85badb6eb65309ba163130f2",
+  "full_runner_initialization_and_fit_test_passed": true,
+  "repository_entry_substituted_with": "Tiny CPU model to exercise real runner, trainer and callback",
+  "phase_counts": {
+    "sanity_validation": 2,
+    "train": 2,
+    "validation": 2,
+    "test": 2
+  },
+  "elapsed_seconds": 3.940762913785875
+}

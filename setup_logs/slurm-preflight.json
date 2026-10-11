@@ -1,0 +1,16 @@
+{
+  "checked_at_utc": "2026-10-09T23:57:41.458012+00:00",
+  "command": [
+    "sbatch",
+    "--test-only",
+    "--chdir=/blue/yonghui.wu/zhangm3",
+    "scripts/train_l4.sbatch"
+  ],
+  "returncode": 0,
+  "stdout": "",
+  "stderr": "sbatch: Job 45373468 to start at 2026-10-12T19:43:41 a using 4 processors on nodes c1105a-s24 in partition hpg-turin\n",
+  "job_submitted": false,
+  "cpu_trainer_construction_passed": true,
+  "cuda_guard_passed": true,
+  "gpu_execution_verified": false
+}
