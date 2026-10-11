@@ -1,5 +1,13 @@
 # Task plan
 
+## Paper and model explanation (2026-10-11)
+
+21. Read the paper and verify global/spatial attention semantics — complete
+22. Inspect the first correct notebook example and its signed contributions — complete
+23. Explain interpretability, concept discovery, and zero-shot extensions in plain language — complete
+
+Errors in this explanation review: the sandbox startup permission issue persists, so necessary shell reads use escalation. OpenReview currently presents a browser challenge; use the complete local paper. The example metadata key is `examples`, not `samples`; correct the focused reader.
+
 Goal: rebuild the HPG environment, download and verify CUB, replace obsolete notebook setup, and provide a verified L4 Slurm submission example without submitting training.
 
 1. Review notebook, dependencies, and cluster configuration — complete
@@ -74,3 +82,29 @@ Current constraint: sandbox startup still fails with a temporary-directory permi
 - Final diff check initially expected one removed closing-brace line, but difflib reported zero removed lines (a pure insertion). Adjusted the verification to accept either valid alignment; notebook schema and semantic-preservation checks had already passed.
 
 Hyperparameter review complete: Section 4.7 added to the main notebook with evidence, candidate values, reasons, tradeoffs, and a controlled evaluation plan. Notebook schema, numerical evidence, Markdown tables, and local links passed validation. All original 39 cells, code outputs, and embedded metadata preserved; no training executed.
+
+## Test explanation visualizations (2026-10-10)
+
+User request: visualize the paper's explainability with several correct and incorrect test predictions.
+
+15. Inspect current notebook, paper, completed checkpoints, and test split — complete
+16. Extract concept attention and choose traceable correct/incorrect examples — complete
+17. Generate figures and add an executed explanation section to the notebook — complete
+18. Verify sample identities, explanation semantics, figures, and notebook preservation — complete
+
+Current evidence: the notebook now records a second completed disjoint-split run (job 45478721), newer than the previous planning notes. Prefer its selected checkpoint and saved test IDs for these examples. Sandbox startup still fails; filesystem commands require escalation.
+
+Completed 2026-10-11: Section 4.10 contains eight new cells, four executed code cells, and seven inline figures. Six detailed PNG/PDF pairs, an overview PNG/PDF, a local gallery, cached arrays, provenance, and verification.json are saved in explanation_artifacts/disjoint-45478721/. All 57 existing cells and all prior metadata are preserved. Official sample IDs/labels/test membership, probabilities, attention normalization, complete additive logit reconstruction, full PNG decoding, PDF signatures, notebook schema, and whitespace checks passed.
+
+## Regroup results to match the assessment (2026-10-11)
+
+User request: regroup the existing results into Section 5, following the assessment outline.
+
+19. Determine section boundaries and update the notebook organization — complete
+20. Update cross-references and verify preserved code, outputs, and dependencies — complete
+
+Scope: reorganize and renumber existing results/interpretation material, keep executed figures and metrics, and place existing future-experiment discussion after the results. No rerunning training or inference is needed for this editorial change.
+
+- Stopped an overly broad supplemental AGENTS.md search; use only explicit ancestor paths and scoped project directories for any further instruction checks.
+
+Regrouping complete: Section 5 now contains 5.1 first-run results, 5.2 disjoint-baseline results, 5.3 comparison, and 5.4 concept explanations. Existing future-experiment Markdown moved into Section 6 Discussion (6.1–6.4). All 65 original cell IDs, 28 code cells in their original execution order, numeric outputs, and 16 inline figures are preserved; only one printed section-label caption changed. Updated notebook/README references. Notebook schema, preservation assertions, headings, absence of stale result references, and git diff --check passed; no code execution was needed.

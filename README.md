@@ -73,3 +73,12 @@ Monitor with `squeue -u zhangm3`; logs are `training_runs/slurm-<job-id>.out` an
 Dataset files, virtual environments, downloaded weights, and checkpoints are excluded from Git. Environment audit: `setup_logs/environment.json`; install log: `setup_logs/uv-sync-hpg.log`.
 
 References: [HPG GPU requests](https://docs.rc.ufl.edu/scheduler/gpu_access/) and [HPG computation](https://docs.rc.ufl.edu/quickstart/computation/).
+
+The current notebook's **Section 5.4** shows three correct and three incorrect predictions from the completed disjoint run **45478721**. Each example includes spatial concept heatmaps, global concept attention, and signed contributions to the predicted-versus-comparison class margin. Open `explanation_artifacts/disjoint-45478721/gallery.html` for the standalone gallery; PNG/PDF exports and sample provenance are in the same directory. Displaying cached examples does not load the model. To recompute them from the saved Blue checkpoint and split, run:
+
+```bash
+OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 \
+  .venv/bin/python scripts/visualize_test_explanations.py
+```
+
+Use `--render-only` to regenerate figures from cached tensors. These are CPU float32 predictions from the saved epoch-28 checkpoint, with an exact additive logit reconstruction check; the six examples are qualitative illustrations rather than a full-test explanation-quality metric.
