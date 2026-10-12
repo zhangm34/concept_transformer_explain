@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=concept-cub-l4
-#SBATCH --account=yonghui.wu
-#SBATCH --qos=yonghui.wu
+#SBATCH --account=cruzalmeida
+#SBATCH --qos=cruzalmeida
 #SBATCH --partition=hpg-turin
 #SBATCH --gres=gpu:l4:1
 #SBATCH --nodes=1

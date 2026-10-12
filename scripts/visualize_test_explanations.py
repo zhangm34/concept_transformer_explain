@@ -19,7 +19,7 @@ import numpy as np
 
 
 PROJECT_DIR = Path(__file__).resolve().parents[1]
-WORK_DIR = Path('/blue/yonghui.wu/zhangm3/concept_transformer_explain')
+WORK_DIR = Path('/blue/cruzalmeida/li.xiaohan/concept_transformer_explain')
 BUNDLE = WORK_DIR / 'training_runs/disjoint-proportional-seed42-20261010'
 
 
